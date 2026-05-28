@@ -1,1 +1,5 @@
 @import './components/button/Button.css';
+@import './components/label/Label.css';
+@import './components/input/Input.css';
+@import './components/textarea/Textarea.css';
+@import './components/badge/Badge.css';

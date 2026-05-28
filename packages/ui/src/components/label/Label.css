@@ -1,0 +1,37 @@
+.zy-label {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--zy-spacing-1, 4px);
+  font-size: var(--zy-font-size-sm, 0.875rem);
+  font-weight: var(--zy-font-weight-medium, 500);
+  color: var(--zy-foreground, #09090b);
+  line-height: var(--zy-line-height-tight, 1.25);
+  cursor: default;
+}
+
+.zy-label__text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--zy-spacing-1, 4px);
+}
+
+.zy-label__required {
+  color: var(--zy-danger, #dc2626);
+  font-weight: var(--zy-font-weight-normal, 400);
+  line-height: 1;
+}
+
+.zy-label--error {
+  color: var(--zy-danger, #dc2626);
+}
+
+.zy-label--error .zy-label__required {
+  color: var(--zy-danger, #dc2626);
+}
+
+.zy-label__description {
+  font-weight: var(--zy-font-weight-normal, 400);
+  font-size: var(--zy-font-size-xs, 0.75rem);
+  color: var(--zy-muted-foreground, #71717a);
+  line-height: var(--zy-line-height-normal, 1.5);
+}

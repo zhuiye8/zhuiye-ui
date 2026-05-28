@@ -3,6 +3,8 @@ import {
   spacing,
   radii,
   fontSizes,
+  fontWeights,
+  lineHeights,
   shadows,
   transitions,
   lightTheme,
@@ -21,6 +23,10 @@ function toVar(name: string): string {
   return `--zy-${name}`;
 }
 
+function camelToKebab(str: string): string {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
 function flattenObj(obj: Record<string, unknown>, prefix = ''): [string, string][] {
   const entries: [string, string][] = [];
   for (const [key, value] of Object.entries(obj)) {
@@ -35,7 +41,7 @@ function flattenObj(obj: Record<string, unknown>, prefix = ''): [string, string]
 }
 
 function themeToVars(theme: Record<string, string>): string[] {
-  return Object.entries(theme).map(([k, v]) => `  ${toVar(k)}: ${v};`);
+  return Object.entries(theme).map(([k, v]) => `  ${toVar(camelToKebab(k))}: ${v};`);
 }
 
 const scaleVars: string[] = [
@@ -43,6 +49,8 @@ const scaleVars: string[] = [
   ...Object.entries(spacing).map(([k, v]) => `  ${toVar(`spacing-${k}`)}: ${v};`),
   ...Object.entries(radii).map(([k, v]) => `  ${toVar(`radius-${k}`)}: ${v};`),
   ...Object.entries(fontSizes).map(([k, v]) => `  ${toVar(`font-size-${k}`)}: ${v};`),
+  ...Object.entries(fontWeights).map(([k, v]) => `  ${toVar(`font-weight-${k}`)}: ${v};`),
+  ...Object.entries(lineHeights).map(([k, v]) => `  ${toVar(`line-height-${k}`)}: ${v};`),
   ...Object.entries(shadows).map(([k, v]) => `  ${toVar(`shadow-${k}`)}: ${v};`),
   ...Object.entries(transitions).map(([k, v]) => `  ${toVar(`transition-${k}`)}: ${v};`),
 ];
@@ -68,7 +76,18 @@ const cssContent = [
 
 writeFileSync(resolve(distDir, 'tokens.css'), cssContent);
 
-const tokens = { colors, spacing, radii, fontSizes, shadows, transitions, lightTheme, darkTheme };
+const tokens = {
+  colors,
+  spacing,
+  radii,
+  fontSizes,
+  fontWeights,
+  lineHeights,
+  shadows,
+  transitions,
+  lightTheme,
+  darkTheme,
+};
 writeFileSync(resolve(distDir, 'tokens.json'), JSON.stringify(tokens, null, 2) + '\n');
 
 console.log('✓ Tokens built: dist/tokens.css, dist/tokens.json');

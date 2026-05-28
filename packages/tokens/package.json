@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "build": "tsx scripts/build.ts",
+    "test": "tsx scripts/test-build.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
