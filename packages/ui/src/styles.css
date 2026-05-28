@@ -3,3 +3,6 @@
 @import './components/input/Input.css';
 @import './components/textarea/Textarea.css';
 @import './components/badge/Badge.css';
+@import './components/checkbox/Checkbox.css';
+@import './components/switch/Switch.css';
+@import './components/radio/Radio.css';

@@ -12,3 +12,14 @@ export type { TextareaProps, TextareaResize } from './components/textarea';
 
 export { Badge } from './components/badge';
 export type { BadgeProps, BadgeVariant, BadgeSize } from './components/badge';
+
+export { Checkbox } from './components/checkbox';
+export type { CheckboxProps } from './components/checkbox';
+
+export { Switch } from './components/switch';
+export type { SwitchProps } from './components/switch';
+
+export { Radio } from './components/radio';
+export type { RadioProps } from './components/radio';
+export { RadioGroup } from './components/radio';
+export type { RadioGroupProps, RadioGroupOrientation } from './components/radio';

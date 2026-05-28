@@ -47,7 +47,7 @@ describe('Button', () => {
   });
 
   it('renders left icon', () => {
-    render(<Button leftIcon={<span data-testid="icon">★</span>}>Star</Button>);
+    render(<Button leftIcon={<span data-testid="icon">*</span>}>Star</Button>);
     expect(screen.getByTestId('icon')).toBeInTheDocument();
   });
 

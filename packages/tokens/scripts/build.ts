@@ -90,4 +90,4 @@ const tokens = {
 };
 writeFileSync(resolve(distDir, 'tokens.json'), JSON.stringify(tokens, null, 2) + '\n');
 
-console.log('✓ Tokens built: dist/tokens.css, dist/tokens.json');
+console.log('[OK] Tokens built: dist/tokens.css, dist/tokens.json');

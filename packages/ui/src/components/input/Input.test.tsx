@@ -59,7 +59,7 @@ describe('Input', () => {
   });
 
   it('renders right adornment', () => {
-    render(<Input rightAdornment={<span data-testid="right">✓</span>} />);
+    render(<Input rightAdornment={<span data-testid="right">ok</span>} />);
     expect(screen.getByTestId('right')).toBeInTheDocument();
   });
 
