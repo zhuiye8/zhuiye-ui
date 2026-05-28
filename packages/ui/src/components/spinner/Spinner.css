@@ -1,0 +1,35 @@
+.zy-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--zy-primary);
+}
+
+.zy-spinner__icon {
+  animation: zy-spin 0.75s linear infinite;
+}
+
+/* Sizes */
+.zy-spinner--sm .zy-spinner__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.zy-spinner--md .zy-spinner__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.zy-spinner--lg .zy-spinner__icon {
+  width: 32px;
+  height: 32px;
+}
+
+@keyframes zy-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

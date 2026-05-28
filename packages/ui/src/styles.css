@@ -6,3 +6,7 @@
 @import './components/checkbox/Checkbox.css';
 @import './components/switch/Switch.css';
 @import './components/radio/Radio.css';
+@import './components/visually-hidden/VisuallyHidden.css';
+@import './components/spinner/Spinner.css';
+@import './components/separator/Separator.css';
+@import './components/icon-slot/IconSlot.css';
