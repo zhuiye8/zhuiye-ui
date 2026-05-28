@@ -9,8 +9,19 @@ import {
   Switch,
   Radio,
   RadioGroup,
+  Select,
   Button,
 } from '@zhuiye/ui';
+import type { SelectOptionSource } from '@zhuiye/ui';
+
+const countryOptions: SelectOptionSource[] = [
+  { value: 'us', label: 'United States' },
+  { value: 'ca', label: 'Canada' },
+  { value: 'uk', label: 'United Kingdom' },
+  { value: 'de', label: 'Germany' },
+  { value: 'fr', label: 'France' },
+  { value: 'jp', label: 'Japan' },
+];
 
 const meta: Meta = {
   title: 'Patterns/FormComposition',
@@ -40,6 +51,9 @@ export const RegistrationForm: Story = {
       </Field>
       <Field label="Password" required description="At least 8 characters.">
         <Input type="password" placeholder="Enter password" fullWidth />
+      </Field>
+      <Field label="Country">
+        <Select options={countryOptions} placeholder="Select country" fullWidth />
       </Field>
       <Field label="Bio" description="Tell us about yourself.">
         <Textarea placeholder="Optional..." fullWidth />
@@ -168,6 +182,9 @@ export const DarkFormComposition: Story = {
         </Field>
         <Field label="Email address" required description="We will never share your email.">
           <Input type="email" placeholder="jane@example.com" fullWidth />
+        </Field>
+        <Field label="Country">
+          <Select options={countryOptions} placeholder="Select country" fullWidth />
         </Field>
         <Field label="Message">
           <Textarea placeholder="Tell us what you think..." fullWidth />

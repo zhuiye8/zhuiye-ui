@@ -4,11 +4,11 @@ High-quality React + TypeScript UI component library built on a unified design t
 
 ## Packages
 
-| Package                              | Description                                                                                                                                                                                                                                                           |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/tokens` (`@zhuiye/tokens`) | Design tokens -- colors, spacing, typography, radii, shadows. Outputs CSS custom properties and a JSON manifest.                                                                                                                                                      |
-| `packages/ui` (`@zhuiye/ui`)         | React component library. Ships `Button`, `Label`, `Input`, `Textarea`, `Badge`, `Checkbox`, `Switch`, `Radio`, `RadioGroup`, `VisuallyHidden`, `Spinner`, `Separator`, `IconSlot`, `FormMessage`, `Field`, and `Fieldset` components with full accessibility support. |
-| `apps/docs` (`@zhuiye/docs`)         | Storybook documentation site and Playwright E2E tests.                                                                                                                                                                                                                |
+| Package                              | Description                                                                                                                                                                                                                                                                     |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/tokens` (`@zhuiye/tokens`) | Design tokens -- colors, spacing, typography, radii, shadows. Outputs CSS custom properties and a JSON manifest.                                                                                                                                                                |
+| `packages/ui` (`@zhuiye/ui`)         | React component library. Ships `Button`, `Label`, `Input`, `Textarea`, `Badge`, `Checkbox`, `Switch`, `Radio`, `RadioGroup`, `VisuallyHidden`, `Spinner`, `Separator`, `IconSlot`, `FormMessage`, `Field`, `Fieldset`, and `Select` components with full accessibility support. |
+| `apps/docs` (`@zhuiye/docs`)         | Storybook documentation site and Playwright E2E tests.                                                                                                                                                                                                                          |
 
 ## Common Commands
 
@@ -42,6 +42,7 @@ pnpm run format:check     # Prettier (check only)
 - **FormMessage** -- paragraph-based message with `neutral | danger | success | warning` tones. Supports `role="alert"` for error announcements.
 - **Field** -- wraps a single form control with `Label`, optional `description`, and `errorMessage`. Auto-generates stable ids, merges `aria-describedby`, and injects `disabled` / `invalid` when the child does not define them.
 - **Fieldset** -- groups related controls with `legend`, optional `description`, and `errorMessage`. Supports `vertical | horizontal` orientation, native `disabled`, and `aria-invalid`.
+- **Select** -- accessible select built on `@radix-ui/react-select`. Supports `sm | md | lg` sizes, `invalid` / `disabled` states, `fullWidth` mode, flat or grouped options, controlled/uncontrolled (`value` / `defaultValue` / `onValueChange`), placeholder, and full `Field` integration.
 - Design tokens are generated from `packages/tokens/scripts/build.ts` and produce `dist/tokens.css` + `dist/tokens.json`.
 - Storybook is configured with autodocs, a11y addon, and interaction testing.
 - Dark mode is supported through `data-theme="dark"` on any ancestor element. Semantic CSS variables (`--zy-background`, `--zy-foreground`, etc.) automatically switch. Use the Storybook toolbar to toggle themes.

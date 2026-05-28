@@ -8,6 +8,6 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   splitting: false,
-  external: ['react', 'react-dom', 'react/jsx-runtime'],
+  external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/react-select'],
   outDir: 'dist',
 });

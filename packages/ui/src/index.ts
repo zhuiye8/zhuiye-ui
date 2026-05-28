@@ -53,3 +53,12 @@ export type { FieldProps, FieldControlProps } from './components/field';
 
 export { Fieldset } from './components/fieldset';
 export type { FieldsetProps, FieldsetOrientation } from './components/fieldset';
+
+export { Select } from './components/select';
+export type {
+  SelectProps,
+  SelectSize,
+  SelectOption,
+  SelectGroup,
+  SelectOptionSource,
+} from './components/select';
