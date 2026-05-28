@@ -1,0 +1,183 @@
+/* Tabs Root */
+.zy-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.zy-tabs[data-orientation='vertical'] {
+  flex-direction: row;
+}
+
+/* Tabs List */
+.zy-tabs__list {
+  --_tabs-trigger-px: var(--zy-spacing-3);
+  --_tabs-trigger-py: var(--zy-spacing-2);
+  --_tabs-font-size: var(--zy-font-size-sm);
+  --_tabs-gap: var(--zy-spacing-1);
+
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--zy-spacing-1);
+}
+
+.zy-tabs__list[data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+/* Sizes */
+.zy-tabs__list--sm {
+  --_tabs-trigger-px: var(--zy-spacing-2);
+  --_tabs-trigger-py: var(--zy-spacing-1);
+  --_tabs-font-size: var(--zy-font-size-xs);
+  --_tabs-gap: 0;
+}
+
+.zy-tabs__list--md {
+  --_tabs-trigger-px: var(--zy-spacing-3);
+  --_tabs-trigger-py: var(--zy-spacing-2);
+  --_tabs-font-size: var(--zy-font-size-sm);
+  --_tabs-gap: var(--zy-spacing-1);
+}
+
+.zy-tabs__list--lg {
+  --_tabs-trigger-px: var(--zy-spacing-4);
+  --_tabs-trigger-py: var(--zy-spacing-3);
+  --_tabs-font-size: var(--zy-font-size-base);
+  --_tabs-gap: var(--zy-spacing-1);
+}
+
+/* Underline Variant */
+.zy-tabs__list--underline {
+  gap: 0;
+  border-bottom: 1px solid var(--zy-border);
+}
+
+.zy-tabs__list--underline[data-orientation='vertical'] {
+  border-bottom: none;
+  border-right: 1px solid var(--zy-border);
+}
+
+.zy-tabs__list--underline .zy-tabs__trigger {
+  padding: var(--_tabs-trigger-py) var(--_tabs-trigger-px);
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--zy-muted-foreground);
+}
+
+.zy-tabs__list--underline[data-orientation='vertical'] .zy-tabs__trigger {
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  border-radius: 0;
+}
+
+.zy-tabs__list--underline .zy-tabs__trigger[data-state='active'] {
+  border-bottom-color: var(--zy-primary);
+  color: var(--zy-foreground);
+}
+
+.zy-tabs__list--underline[data-orientation='vertical'] .zy-tabs__trigger[data-state='active'] {
+  border-bottom-color: transparent;
+  border-right-color: var(--zy-primary);
+}
+
+/* Pills Variant */
+.zy-tabs__list--pills {
+  gap: var(--_tabs-gap);
+}
+
+.zy-tabs__list--pills .zy-tabs__trigger {
+  padding: var(--_tabs-trigger-py) var(--_tabs-trigger-px);
+  border-radius: var(--zy-radius-full);
+  background-color: transparent;
+  color: var(--zy-muted-foreground);
+}
+
+.zy-tabs__list--pills .zy-tabs__trigger[data-state='active'] {
+  background-color: var(--zy-muted);
+  color: var(--zy-foreground);
+}
+
+/* Contained Variant */
+.zy-tabs__list--contained {
+  gap: var(--_tabs-gap);
+  padding: var(--zy-spacing-1);
+  border-radius: var(--zy-radius-md);
+  background-color: var(--zy-muted);
+}
+
+.zy-tabs__list--contained .zy-tabs__trigger {
+  padding: var(--_tabs-trigger-py) var(--_tabs-trigger-px);
+  border-radius: var(--zy-radius-sm);
+  background-color: transparent;
+  color: var(--zy-muted-foreground);
+}
+
+.zy-tabs__list--contained .zy-tabs__trigger[data-state='active'] {
+  background-color: var(--zy-surface-elevated);
+  color: var(--zy-foreground);
+  box-shadow: var(--zy-shadow-sm);
+}
+
+/* Trigger */
+.zy-tabs__trigger {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--zy-spacing-2);
+  border: none;
+  font-family: inherit;
+  font-size: var(--_tabs-font-size);
+  font-weight: var(--zy-font-weight-medium);
+  line-height: var(--zy-line-height-normal);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color var(--zy-transition-fast),
+    color var(--zy-transition-fast),
+    border-color var(--zy-transition-fast);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.zy-tabs__trigger:hover:not([data-state='active']):not([data-disabled]) {
+  color: var(--zy-foreground);
+}
+
+.zy-tabs__trigger:focus-visible {
+  outline: 2px solid var(--zy-focus-ring);
+  outline-offset: -2px;
+}
+
+.zy-tabs__trigger[data-disabled] {
+  color: var(--zy-muted-foreground);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Content */
+.zy-tabs__content {
+  box-sizing: border-box;
+  padding: var(--zy-spacing-4) 0;
+  outline: none;
+}
+
+.zy-tabs__content:focus-visible {
+  outline: 2px solid var(--zy-focus-ring);
+  outline-offset: 2px;
+}
+
+.zy-tabs[data-orientation='vertical'] .zy-tabs__content {
+  padding: 0 var(--zy-spacing-4);
+}
+
+@media (max-width: 640px) {
+  .zy-tabs__list--underline,
+  .zy-tabs__list--pills,
+  .zy-tabs__list--contained {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

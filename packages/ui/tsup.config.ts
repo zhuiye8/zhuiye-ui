@@ -16,6 +16,8 @@ export default defineConfig({
     '@radix-ui/react-dialog',
     '@radix-ui/react-popover',
     '@radix-ui/react-tooltip',
+    '@radix-ui/react-dropdown-menu',
+    '@radix-ui/react-tabs',
   ],
   outDir: 'dist',
 });

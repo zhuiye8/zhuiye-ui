@@ -101,3 +101,38 @@ export {
   TooltipArrow,
 } from './components/tooltip';
 export type { TooltipContentProps, TooltipTone } from './components/tooltip';
+
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuPortal,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuItemIndicator,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuArrow,
+  DropdownMenuShortcut,
+} from './components/dropdown-menu';
+export type {
+  DropdownMenuContentProps,
+  DropdownMenuSubContentProps,
+  DropdownMenuItemTone,
+} from './components/dropdown-menu';
+
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/tabs';
+export type {
+  TabsProps,
+  TabsListProps,
+  TabsTriggerProps,
+  TabsContentProps,
+  TabsVariant,
+  TabsSize,
+} from './components/tabs';

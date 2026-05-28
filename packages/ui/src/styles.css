@@ -17,3 +17,5 @@
 @import './components/dialog/Dialog.css';
 @import './components/popover/Popover.css';
 @import './components/tooltip/Tooltip.css';
+@import './components/dropdown-menu/DropdownMenu.css';
+@import './components/tabs/Tabs.css';
