@@ -136,3 +136,37 @@ export type {
   TabsVariant,
   TabsSize,
 } from './components/tabs';
+
+export {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionContent,
+} from './components/accordion';
+export type {
+  AccordionProps,
+  AccordionVariant,
+  AccordionSize,
+  AccordionItemProps,
+  AccordionHeaderProps,
+  AccordionTriggerProps,
+  AccordionContentProps,
+} from './components/accordion';
+
+export {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+  CollapsibleHeader,
+  CollapsibleTitle,
+  CollapsibleDescription,
+} from './components/collapsible';
+export type {
+  CollapsibleProps,
+  CollapsibleTriggerProps,
+  CollapsibleContentProps,
+  CollapsibleHeaderProps,
+  CollapsibleTitleProps,
+  CollapsibleDescriptionProps,
+} from './components/collapsible';

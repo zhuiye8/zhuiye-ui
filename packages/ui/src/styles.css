@@ -19,3 +19,5 @@
 @import './components/tooltip/Tooltip.css';
 @import './components/dropdown-menu/DropdownMenu.css';
 @import './components/tabs/Tabs.css';
+@import './components/accordion/Accordion.css';
+@import './components/collapsible/Collapsible.css';
