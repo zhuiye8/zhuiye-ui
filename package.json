@@ -1,0 +1,32 @@
+{
+  "name": "zhuiye-ui",
+  "private": true,
+  "packageManager": "pnpm@10.20.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter @zhuiye/tokens run build && pnpm --filter @zhuiye/ui run build",
+    "build:tokens": "pnpm --filter @zhuiye/tokens run build",
+    "build:ui": "pnpm --filter @zhuiye/ui run build",
+    "dev": "pnpm --filter @zhuiye/docs run dev",
+    "storybook": "pnpm --filter @zhuiye/docs run storybook",
+    "test": "pnpm --filter @zhuiye/ui run test",
+    "test:coverage": "pnpm --filter @zhuiye/ui run test:coverage",
+    "test:e2e": "pnpm --filter @zhuiye/docs run test:e2e",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md}\"",
+    "typecheck": "pnpm -r run typecheck",
+    "clean": "pnpm -r exec rm -rf dist node_modules"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.4.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

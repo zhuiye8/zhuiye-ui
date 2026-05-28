@@ -1,0 +1,160 @@
+.zy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--zy-spacing-2, 8px);
+  border: 1px solid transparent;
+  border-radius: var(--zy-radius-md, 8px);
+  font-weight: var(--zy-font-weight-medium, 500);
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color var(--zy-transition-fast, 150ms ease),
+    color var(--zy-transition-fast, 150ms ease),
+    border-color var(--zy-transition-fast, 150ms ease),
+    box-shadow var(--zy-transition-fast, 150ms ease);
+  white-space: nowrap;
+  user-select: none;
+  outline: none;
+  position: relative;
+}
+
+.zy-btn:focus-visible {
+  outline: 2px solid var(--zy-focus-ring, #3b82f6);
+  outline-offset: 2px;
+}
+
+/* Sizes */
+.zy-btn--sm {
+  height: 32px;
+  padding: 0 var(--zy-spacing-3, 12px);
+  font-size: var(--zy-font-size-sm, 0.875rem);
+}
+
+.zy-btn--md {
+  height: 40px;
+  padding: 0 var(--zy-spacing-4, 16px);
+  font-size: var(--zy-font-size-base, 1rem);
+}
+
+.zy-btn--lg {
+  height: 48px;
+  padding: 0 var(--zy-spacing-6, 24px);
+  font-size: var(--zy-font-size-lg, 1.125rem);
+}
+
+/* Primary */
+.zy-btn--primary {
+  background-color: var(--zy-primary, #2563eb);
+  color: var(--zy-primary-foreground, #ffffff);
+}
+
+.zy-btn--primary:hover:not(:disabled) {
+  background-color: var(--zy-color-primary-700, #1d4ed8);
+}
+
+.zy-btn--primary:active:not(:disabled) {
+  background-color: var(--zy-color-primary-800, #1e40af);
+}
+
+/* Secondary */
+.zy-btn--secondary {
+  background-color: var(--zy-muted, #f4f4f5);
+  color: var(--zy-foreground, #09090b);
+}
+
+.zy-btn--secondary:hover:not(:disabled) {
+  background-color: var(--zy-border, #e4e4e7);
+}
+
+.zy-btn--secondary:active:not(:disabled) {
+  background-color: var(--zy-muted-foreground, #71717a);
+  color: var(--zy-surface, #fafafa);
+}
+
+/* Outline */
+.zy-btn--outline {
+  background-color: transparent;
+  border-color: var(--zy-border, #e4e4e7);
+  color: var(--zy-foreground, #09090b);
+}
+
+.zy-btn--outline:hover:not(:disabled) {
+  background-color: var(--zy-muted, #f4f4f5);
+  border-color: var(--zy-muted-foreground, #71717a);
+}
+
+.zy-btn--outline:active:not(:disabled) {
+  background-color: var(--zy-border, #e4e4e7);
+}
+
+/* Ghost */
+.zy-btn--ghost {
+  background-color: transparent;
+  color: var(--zy-foreground, #09090b);
+}
+
+.zy-btn--ghost:hover:not(:disabled) {
+  background-color: var(--zy-muted, #f4f4f5);
+}
+
+.zy-btn--ghost:active:not(:disabled) {
+  background-color: var(--zy-border, #e4e4e7);
+}
+
+/* Danger */
+.zy-btn--danger {
+  background-color: var(--zy-danger, #dc2626);
+  color: var(--zy-danger-foreground, #ffffff);
+}
+
+.zy-btn--danger:hover:not(:disabled) {
+  background-color: var(--zy-color-danger-700, #b91c1c);
+}
+
+.zy-btn--danger:active:not(:disabled) {
+  background-color: var(--zy-color-danger-800, #991b1b);
+}
+
+/* States */
+.zy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.zy-btn--loading {
+  cursor: wait;
+}
+
+.zy-btn--full {
+  width: 100%;
+}
+
+/* Spinner */
+.zy-btn__spinner {
+  display: inline-flex;
+  align-items: center;
+}
+
+.zy-btn__spinner-icon {
+  width: 1em;
+  height: 1em;
+  animation: zy-spin 0.75s linear infinite;
+}
+
+@keyframes zy-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon */
+.zy-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}

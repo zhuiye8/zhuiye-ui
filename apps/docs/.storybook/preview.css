@@ -1,0 +1,24 @@
+body {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--zy-background, #ffffff);
+  color: var(--zy-foreground, #09090b);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+[data-theme='dark'] body,
+[data-theme='dark'] .docs-story {
+  background-color: var(--zy-background);
+  color: var(--zy-foreground);
+}
