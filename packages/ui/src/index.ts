@@ -76,3 +76,28 @@ export {
   DialogDescription,
 } from './components/dialog';
 export type { DialogContentProps, DialogSize } from './components/dialog';
+
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverAnchor,
+  PopoverClose,
+  PopoverPortal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverFooter,
+  PopoverTitle,
+  PopoverDescription,
+} from './components/popover';
+export type { PopoverContentProps, PopoverSize } from './components/popover';
+
+export {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipPortal,
+  TooltipContent,
+  TooltipArrow,
+} from './components/tooltip';
+export type { TooltipContentProps, TooltipTone } from './components/tooltip';

@@ -15,3 +15,5 @@
 @import './components/fieldset/Fieldset.css';
 @import './components/select/Select.css';
 @import './components/dialog/Dialog.css';
+@import './components/popover/Popover.css';
+@import './components/tooltip/Tooltip.css';
