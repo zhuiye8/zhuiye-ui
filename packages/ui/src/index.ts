@@ -44,3 +44,12 @@ export type {
   IconSlotDecorativeProps,
   IconSlotAccessibleProps,
 } from './components/icon-slot';
+
+export { FormMessage } from './components/form-message';
+export type { FormMessageProps, FormMessageTone } from './components/form-message';
+
+export { Field } from './components/field';
+export type { FieldProps, FieldControlProps } from './components/field';
+
+export { Fieldset } from './components/fieldset';
+export type { FieldsetProps, FieldsetOrientation } from './components/fieldset';

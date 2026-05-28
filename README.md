@@ -4,11 +4,11 @@ High-quality React + TypeScript UI component library built on a unified design t
 
 ## Packages
 
-| Package                              | Description                                                                                                                                                                                                                       |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/tokens` (`@zhuiye/tokens`) | Design tokens -- colors, spacing, typography, radii, shadows. Outputs CSS custom properties and a JSON manifest.                                                                                                                  |
-| `packages/ui` (`@zhuiye/ui`)         | React component library. Ships `Button`, `Label`, `Input`, `Textarea`, `Badge`, `Checkbox`, `Switch`, `Radio`, `RadioGroup`, `VisuallyHidden`, `Spinner`, `Separator`, and `IconSlot` components with full accessibility support. |
-| `apps/docs` (`@zhuiye/docs`)         | Storybook documentation site and Playwright E2E tests.                                                                                                                                                                            |
+| Package                              | Description                                                                                                                                                                                                                                                           |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/tokens` (`@zhuiye/tokens`) | Design tokens -- colors, spacing, typography, radii, shadows. Outputs CSS custom properties and a JSON manifest.                                                                                                                                                      |
+| `packages/ui` (`@zhuiye/ui`)         | React component library. Ships `Button`, `Label`, `Input`, `Textarea`, `Badge`, `Checkbox`, `Switch`, `Radio`, `RadioGroup`, `VisuallyHidden`, `Spinner`, `Separator`, `IconSlot`, `FormMessage`, `Field`, and `Fieldset` components with full accessibility support. |
+| `apps/docs` (`@zhuiye/docs`)         | Storybook documentation site and Playwright E2E tests.                                                                                                                                                                                                                |
 
 ## Common Commands
 
@@ -35,10 +35,13 @@ pnpm run format:check     # Prettier (check only)
 - **Checkbox** -- accessible checkbox with `label`, `description`, `errorMessage`, `invalid`, `disabled`, `indeterminate`, and `fullWidth` support. Auto-generates stable ids.
 - **Switch** -- toggle switch with `checked` / `defaultChecked` / `onCheckedChange` controlled/uncontrolled API, `label`, `description`, `errorMessage`, `invalid`, `disabled`, and `fullWidth` support. Uses `role="switch"` for screen reader compatibility.
 - **RadioGroup** + **Radio** -- accessible radio group with `label`, `description`, `errorMessage`, `invalid`, `disabled`, `orientation` (`horizontal | vertical`), `name`, `value` / `defaultValue` / `onValueChange` controlled/uncontrolled API. Radio supports `value`, `label`, `description`, and `disabled`.
-- **VisuallyHidden** -- renders screen-reader-only text via the standard clipping technique. Supports `as` prop for element type. Default `span`.
+- **VisuallyHidden** -- renders a `span` with screen-reader-only text via the standard clipping technique.
 - **Spinner** -- accessible loading indicator with `sm | md | lg` sizes. Exposes `role="status"` with a hidden label by default; set `decorative` to hide from assistive technology.
 - **Separator** -- visual divider (`hr` for horizontal, `div` for vertical). Decorative by default; set `decorative={false}` for semantic `role="separator"` with `aria-orientation`.
 - **IconSlot** -- utility wrapper for icons with `sm | md | lg` sizes. Decorative by default; set `decorative={false}` with a `label` for `role="img"` accessibility.
+- **FormMessage** -- paragraph-based message with `neutral | danger | success | warning` tones. Supports `role="alert"` for error announcements.
+- **Field** -- wraps a single form control with `Label`, optional `description`, and `errorMessage`. Auto-generates stable ids, merges `aria-describedby`, and injects `disabled` / `invalid` when the child does not define them.
+- **Fieldset** -- groups related controls with `legend`, optional `description`, and `errorMessage`. Supports `vertical | horizontal` orientation, native `disabled`, and `aria-invalid`.
 - Design tokens are generated from `packages/tokens/scripts/build.ts` and produce `dist/tokens.css` + `dist/tokens.json`.
 - Storybook is configured with autodocs, a11y addon, and interaction testing.
 - Dark mode is supported through `data-theme="dark"` on any ancestor element. Semantic CSS variables (`--zy-background`, `--zy-foreground`, etc.) automatically switch. Use the Storybook toolbar to toggle themes.

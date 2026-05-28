@@ -1,0 +1,30 @@
+.zy-form-message {
+  margin: 0;
+  font-size: var(--zy-font-size-xs);
+  line-height: var(--zy-line-height-normal);
+  color: var(--zy-muted-foreground);
+}
+
+.zy-form-message--neutral {
+  color: var(--zy-muted-foreground);
+}
+
+.zy-form-message--danger {
+  color: var(--zy-danger);
+}
+
+.zy-form-message--success {
+  color: var(--zy-color-success-700);
+}
+
+.zy-form-message--warning {
+  color: var(--zy-color-warning-700);
+}
+
+[data-theme='dark'] .zy-form-message--success {
+  color: var(--zy-color-success-500);
+}
+
+[data-theme='dark'] .zy-form-message--warning {
+  color: var(--zy-color-warning-500);
+}

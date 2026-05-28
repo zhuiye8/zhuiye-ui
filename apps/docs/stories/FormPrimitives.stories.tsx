@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Label, Input, Textarea, Badge } from '@zhuiye/ui';
+import { Field, Input, Textarea, Badge } from '@zhuiye/ui';
 
 const meta: Meta = {
   title: 'Patterns/FormPrimitives',
@@ -21,22 +21,15 @@ export const ContactForm: Story = {
       }}
       onSubmit={(e) => e.preventDefault()}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <Label htmlFor="cf-name" required>
-          Full name
-        </Label>
-        <Input id="cf-name" placeholder="Jane Doe" fullWidth />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <Label htmlFor="cf-email" required description="We will never share your email.">
-          Email address
-        </Label>
-        <Input id="cf-email" type="email" placeholder="jane@example.com" fullWidth />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <Label htmlFor="cf-msg">Message</Label>
-        <Textarea id="cf-msg" placeholder="Tell us what you think..." fullWidth />
-      </div>
+      <Field label="Full name" required>
+        <Input placeholder="Jane Doe" fullWidth />
+      </Field>
+      <Field label="Email address" required description="We will never share your email.">
+        <Input type="email" placeholder="jane@example.com" fullWidth />
+      </Field>
+      <Field label="Message">
+        <Textarea placeholder="Tell us what you think..." fullWidth />
+      </Field>
       <div>
         <Badge variant="success">Form ready</Badge>
       </div>
@@ -56,37 +49,15 @@ export const FormWithErrors: Story = {
       }}
       onSubmit={(e) => e.preventDefault()}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <Label htmlFor="err-name" required error>
-          Full name
-        </Label>
-        <Input id="err-name" placeholder="Jane Doe" fullWidth invalid />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <Label htmlFor="err-email" required error>
-          Email address
-        </Label>
-        <Input
-          id="err-email"
-          type="email"
-          placeholder="jane@example.com"
-          fullWidth
-          invalid
-          errorMessage="Please enter a valid email address."
-        />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <Label htmlFor="err-msg" error>
-          Message
-        </Label>
-        <Textarea
-          id="err-msg"
-          placeholder="Tell us what you think..."
-          fullWidth
-          invalid
-          errorMessage="Message must be at least 10 characters."
-        />
-      </div>
+      <Field label="Full name" required errorMessage="Name is required.">
+        <Input placeholder="Jane Doe" fullWidth />
+      </Field>
+      <Field label="Email address" required errorMessage="Please enter a valid email address.">
+        <Input type="email" placeholder="jane@example.com" fullWidth />
+      </Field>
+      <Field label="Message" errorMessage="Message must be at least 10 characters.">
+        <Textarea placeholder="Tell us what you think..." fullWidth />
+      </Field>
       <div>
         <Badge variant="danger">3 errors</Badge>
       </div>
@@ -105,7 +76,7 @@ export const DarkForm: Story = {
       style={{
         backgroundColor: 'var(--zy-background)',
         color: 'var(--zy-foreground)',
-        borderRadius: '8px',
+        borderRadius: 'var(--zy-radius-md)',
       }}
     >
       <form
@@ -118,22 +89,15 @@ export const DarkForm: Story = {
         }}
         onSubmit={(e) => e.preventDefault()}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <Label htmlFor="dk-name" required>
-            Full name
-          </Label>
-          <Input id="dk-name" placeholder="Jane Doe" fullWidth />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <Label htmlFor="dk-email" required description="We will never share your email.">
-            Email address
-          </Label>
-          <Input id="dk-email" type="email" placeholder="jane@example.com" fullWidth />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <Label htmlFor="dk-msg">Message</Label>
-          <Textarea id="dk-msg" placeholder="Tell us what you think..." fullWidth />
-        </div>
+        <Field label="Full name" required>
+          <Input placeholder="Jane Doe" fullWidth />
+        </Field>
+        <Field label="Email address" required description="We will never share your email.">
+          <Input type="email" placeholder="jane@example.com" fullWidth />
+        </Field>
+        <Field label="Message">
+          <Textarea placeholder="Tell us what you think..." fullWidth />
+        </Field>
         <div style={{ display: 'flex', gap: '8px' }}>
           <Badge variant="primary">Draft</Badge>
           <Badge variant="success">Saved</Badge>
