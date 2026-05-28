@@ -1,11 +1,13 @@
 .zy-input-wrapper {
   display: inline-flex;
+  box-sizing: border-box;
   flex-direction: column;
   gap: var(--zy-spacing-1, 4px);
 }
 
 .zy-input-wrapper--full {
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   gap: var(--zy-spacing-1, 4px);
   width: 100%;
@@ -13,6 +15,7 @@
 
 .zy-input {
   display: inline-flex;
+  box-sizing: border-box;
   align-items: center;
   gap: var(--zy-spacing-2, 8px);
   border: 1px solid var(--zy-border, #e4e4e7);

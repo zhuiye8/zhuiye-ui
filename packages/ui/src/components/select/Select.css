@@ -1,5 +1,6 @@
 .zy-select {
   display: inline-flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
   gap: var(--zy-spacing-2);

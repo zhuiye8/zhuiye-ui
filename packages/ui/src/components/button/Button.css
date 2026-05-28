@@ -1,5 +1,6 @@
 .zy-btn {
   display: inline-flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: center;
   gap: var(--zy-spacing-2, 8px);

@@ -62,3 +62,17 @@ export type {
   SelectGroup,
   SelectOptionSource,
 } from './components/select';
+
+export {
+  Dialog,
+  DialogTrigger,
+  DialogClose,
+  DialogPortal,
+  DialogOverlay,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from './components/dialog';
+export type { DialogContentProps, DialogSize } from './components/dialog';
