@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import {
@@ -109,7 +109,6 @@ describe('DropdownMenu', () => {
   });
 
   it('submenu opens via keyboard', async () => {
-    const user = userEvent.setup();
     render(
       <DropdownMenu defaultOpen>
         <DropdownMenuTrigger>Open</DropdownMenuTrigger>
@@ -124,8 +123,8 @@ describe('DropdownMenu', () => {
       </DropdownMenu>,
     );
     const subTrigger = await screen.findByRole('menuitem', { name: 'More' });
-    subTrigger.focus();
-    await user.keyboard('{ArrowRight}');
+    fireEvent.focus(subTrigger);
+    fireEvent.keyDown(subTrigger, { key: 'ArrowRight', code: 'ArrowRight' });
     expect(await screen.findByRole('menuitem', { name: 'Sub Item' })).toBeInTheDocument();
   });
 

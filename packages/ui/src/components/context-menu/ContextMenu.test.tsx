@@ -114,7 +114,6 @@ describe('ContextMenu', () => {
   });
 
   it('submenu opens via keyboard', async () => {
-    const user = userEvent.setup();
     render(
       <ContextMenu>
         <ContextMenuTrigger>Target</ContextMenuTrigger>
@@ -130,8 +129,8 @@ describe('ContextMenu', () => {
     );
     fireEvent.contextMenu(screen.getByText('Target'));
     const subTrigger = await screen.findByRole('menuitem', { name: 'Arrange' });
-    subTrigger.focus();
-    await user.keyboard('{ArrowRight}');
+    fireEvent.focus(subTrigger);
+    fireEvent.keyDown(subTrigger, { key: 'ArrowRight', code: 'ArrowRight' });
     expect(await screen.findByRole('menuitem', { name: 'Bring forward' })).toBeInTheDocument();
   });
 

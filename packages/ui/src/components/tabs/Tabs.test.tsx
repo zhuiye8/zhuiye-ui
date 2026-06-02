@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
@@ -68,10 +68,10 @@ describe('Tabs', () => {
   });
 
   it('keyboard navigation works for horizontal', async () => {
-    const user = userEvent.setup();
     renderTabs();
-    screen.getByRole('tab', { name: 'Account' }).focus();
-    await user.keyboard('{ArrowRight}');
+    const accountTab = screen.getByRole('tab', { name: 'Account' });
+    fireEvent.focus(accountTab);
+    fireEvent.keyDown(accountTab, { key: 'ArrowRight', code: 'ArrowRight' });
     await waitFor(() => {
       expect(screen.getByRole('tab', { name: 'Settings' })).toHaveFocus();
     });
@@ -86,15 +86,18 @@ describe('Tabs', () => {
   });
 
   it('manual activation does not auto-select on arrow focus, then Enter activates', async () => {
-    const user = userEvent.setup();
     renderTabs({ activationMode: 'manual' });
-    screen.getByRole('tab', { name: 'Account' }).focus();
-    await user.keyboard('{ArrowRight}');
+    const accountTab = screen.getByRole('tab', { name: 'Account' });
+    fireEvent.focus(accountTab);
+    fireEvent.keyDown(accountTab, { key: 'ArrowRight', code: 'ArrowRight' });
     await waitFor(() => {
       expect(screen.getByRole('tab', { name: 'Settings' })).toHaveFocus();
     });
     expect(screen.getByText('Account Content')).toBeInTheDocument();
-    await user.keyboard('{Enter}');
+    fireEvent.keyDown(screen.getByRole('tab', { name: 'Settings' }), {
+      key: 'Enter',
+      code: 'Enter',
+    });
     expect(screen.getByText('Settings Content')).toBeInTheDocument();
   });
 

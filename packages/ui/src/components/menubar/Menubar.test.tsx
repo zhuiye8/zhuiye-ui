@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import {
@@ -144,8 +144,8 @@ describe('Menubar', () => {
     );
     await user.click(screen.getByRole('menuitem', { name: 'Insert' }));
     const subTrigger = await screen.findByRole('menuitem', { name: 'Media' });
-    subTrigger.focus();
-    await user.keyboard('{ArrowRight}');
+    fireEvent.focus(subTrigger);
+    fireEvent.keyDown(subTrigger, { key: 'ArrowRight', code: 'ArrowRight' });
     expect(await screen.findByRole('menuitem', { name: 'Image' })).toBeInTheDocument();
   });
 

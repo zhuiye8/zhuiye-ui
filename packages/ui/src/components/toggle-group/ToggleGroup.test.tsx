@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { ToggleGroup, ToggleGroupItem } from './ToggleGroup';
@@ -65,10 +65,10 @@ describe('ToggleGroup', () => {
   });
 
   it('supports roving keyboard focus', async () => {
-    const user = userEvent.setup();
     renderSingleGroup();
-    screen.getByRole('radio', { name: 'Left' }).focus();
-    await user.keyboard('{ArrowRight}');
+    const left = screen.getByRole('radio', { name: 'Left' });
+    fireEvent.focus(left);
+    fireEvent.keyDown(left, { key: 'ArrowRight', code: 'ArrowRight' });
     await waitFor(() => {
       expect(screen.getByRole('radio', { name: 'Center' })).toHaveFocus();
     });
