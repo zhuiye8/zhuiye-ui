@@ -127,6 +127,45 @@ export type {
   DropdownMenuItemTone,
 } from './components/dropdown-menu';
 
+export {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuPortal,
+  ContextMenuContent,
+  ContextMenuGroup,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuItemIndicator,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+  ContextMenuArrow,
+  ContextMenuShortcut,
+} from './components/context-menu';
+export type {
+  ContextMenuContentProps,
+  ContextMenuSubContentProps,
+  ContextMenuItemTone,
+} from './components/context-menu';
+
+export {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardPortal,
+  HoverCardContent,
+  HoverCardArrow,
+  HoverCardHeader,
+  HoverCardBody,
+  HoverCardFooter,
+  HoverCardTitle,
+  HoverCardDescription,
+} from './components/hover-card';
+export type { HoverCardContentProps, HoverCardSize } from './components/hover-card';
+
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/tabs';
 export type {
   TabsProps,
@@ -243,6 +282,37 @@ export type {
   NavigationMenuIndicatorProps,
   NavigationMenuViewportProps,
 } from './components/navigation-menu';
+
+export {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarPortal,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarLabel,
+  MenubarSeparator,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarItemIndicator,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+  MenubarArrow,
+  MenubarShortcut,
+} from './components/menubar';
+export type {
+  MenubarProps,
+  MenubarVariant,
+  MenubarSize,
+  MenubarMenuProps,
+  MenubarTriggerProps,
+  MenubarContentProps,
+  MenubarSubContentProps,
+  MenubarItemTone,
+} from './components/menubar';
 
 export {
   Sheet,

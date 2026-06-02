@@ -18,6 +18,8 @@
 @import './components/popover/Popover.css';
 @import './components/tooltip/Tooltip.css';
 @import './components/dropdown-menu/DropdownMenu.css';
+@import './components/context-menu/ContextMenu.css';
+@import './components/hover-card/HoverCard.css';
 @import './components/tabs/Tabs.css';
 @import './components/accordion/Accordion.css';
 @import './components/collapsible/Collapsible.css';
@@ -26,6 +28,7 @@
 @import './components/avatar/Avatar.css';
 @import './components/breadcrumb/Breadcrumb.css';
 @import './components/navigation-menu/NavigationMenu.css';
+@import './components/menubar/Menubar.css';
 @import './components/sheet/Sheet.css';
 @import './components/toast/Toast.css';
 @import './components/slider/Slider.css';
