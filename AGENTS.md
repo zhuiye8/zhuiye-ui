@@ -1,5 +1,34 @@
 # zhuiye-ui
 
+## Operating Memory: Read First
+
+This project exists primarily to put the user's Xiaomi MiMo MAX / Token Plan credits to meaningful, high-quality use before they expire. The goal is not to save tokens or minimize model usage. The goal is to turn that capacity into a polished, maintainable React UI component library with excellent UI/UX, documentation, and long-term iteration potential.
+
+### Collaboration Contract
+
+- OpenCode + Xiaomi MiMo are the primary implementation workflow.
+- MiMo should do the main coding work whenever practical.
+- The supervising assistant's default role is project manager, reviewer, and QA: define tasks, choose the model, review diffs, run checks, request revisions, and decide when work is ready to commit or push.
+- The supervising assistant must not silently switch into primary implementer mode. Direct code edits by the supervising assistant require an explicit user request or an urgent narrowly scoped repair approved by the user.
+- Quality, UI/UX, accessibility, maintainability, and documentation are higher priority than credit conservation.
+- The long-term product should grow toward an Ant Design-like experience: component overview, live examples, copyable usage, documentation, and package publishing.
+
+### MiMo Model Routing
+
+- Use `mimo-v2.5-pro` for architecture, implementation, refactoring, debugging, long-context code review, and high-stakes coding tasks.
+- Use `mimo-v2.5` for multimodal UI/UX review, screenshot critique, visual inspection, and tasks requiring image understanding.
+- Prefer the V2.5 series. Avoid legacy model IDs unless the user explicitly asks.
+
+### Required Workflow
+
+1. Write a clear task prompt for OpenCode + MiMo.
+2. Assign the right MiMo model for the task.
+3. Let MiMo implement in the repository.
+4. Review the resulting diff before accepting it.
+5. Run the relevant checks (`lint`, `typecheck`, `test`, `build`, Storybook checks when UI changes).
+6. Send revision prompts to MiMo until quality is acceptable.
+7. Commit and push only after verification.
+
 High-quality React + TypeScript UI component library. Prioritizes maintainability, accessibility, and design consistency.
 
 ## Project Goals
