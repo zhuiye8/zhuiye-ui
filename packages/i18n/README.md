@@ -69,3 +69,7 @@ When adding a new locale:
 2. Add the locale to `SUPPORTED_LOCALES` in `src/locale.ts`.
 3. Register the dictionary in `src/locales/index.ts`.
 4. Run `pnpm --filter @zhuiye/i18n run test` to verify key parity.
+
+## Storybook
+
+The docs Storybook includes a **Locale** toolbar (globe icon) that switches all stories between `en` and `zh-CN` at runtime. A `Foundations/Localization` story demonstrates key lookups, interpolation, and nested `LocaleProvider` overrides.

@@ -53,6 +53,9 @@ importers:
       '@storybook/test':
         specifier: ^8.5.0
         version: 8.6.15(storybook@8.6.18(prettier@3.8.3))
+      '@zhuiye/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@zhuiye/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
