@@ -17,6 +17,7 @@ export default defineConfig({
     '@radix-ui/react-popover',
     '@radix-ui/react-tooltip',
     '@radix-ui/react-dropdown-menu',
+    '@radix-ui/react-navigation-menu',
     '@radix-ui/react-tabs',
     '@radix-ui/react-accordion',
     '@radix-ui/react-collapsible',

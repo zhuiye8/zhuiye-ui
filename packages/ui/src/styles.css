@@ -24,3 +24,5 @@
 @import './components/alert/Alert.css';
 @import './components/progress/Progress.css';
 @import './components/avatar/Avatar.css';
+@import './components/breadcrumb/Breadcrumb.css';
+@import './components/navigation-menu/NavigationMenu.css';

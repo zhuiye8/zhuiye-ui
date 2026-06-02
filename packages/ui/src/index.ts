@@ -198,3 +198,48 @@ export type {
   AvatarFallbackProps,
   AvatarGroupProps,
 } from './components/avatar';
+
+export {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from './components/breadcrumb';
+export type {
+  BreadcrumbProps,
+  BreadcrumbSize,
+  BreadcrumbListProps,
+  BreadcrumbItemProps,
+  BreadcrumbLinkProps,
+  BreadcrumbPageProps,
+  BreadcrumbSeparatorProps,
+  BreadcrumbEllipsisProps,
+} from './components/breadcrumb';
+
+export {
+  NavigationMenu,
+  NavigationMenuSub,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuIndicator,
+  NavigationMenuViewport,
+} from './components/navigation-menu';
+export type {
+  NavigationMenuProps,
+  NavigationMenuVariant,
+  NavigationMenuSize,
+  NavigationMenuSubProps,
+  NavigationMenuListProps,
+  NavigationMenuItemProps,
+  NavigationMenuTriggerProps,
+  NavigationMenuContentProps,
+  NavigationMenuLinkProps,
+  NavigationMenuIndicatorProps,
+  NavigationMenuViewportProps,
+} from './components/navigation-menu';
