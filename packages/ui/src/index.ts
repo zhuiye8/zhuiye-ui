@@ -243,3 +243,49 @@ export type {
   NavigationMenuIndicatorProps,
   NavigationMenuViewportProps,
 } from './components/navigation-menu';
+
+export {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetPortal,
+  SheetOverlay,
+  SheetContent,
+  SheetHeader,
+  SheetBody,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+} from './components/sheet';
+export type {
+  SheetSide,
+  SheetSize,
+  SheetContentProps,
+  SheetOverlayProps,
+  SheetHeaderProps,
+  SheetBodyProps,
+  SheetFooterProps,
+  SheetTitleProps,
+  SheetDescriptionProps,
+} from './components/sheet';
+
+export {
+  ToastProvider,
+  ToastViewport,
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  ToastAction,
+  ToastClose,
+} from './components/toast';
+export type {
+  ToastProps,
+  ToastTone,
+  ToastSize,
+  ToastViewportPosition,
+  ToastViewportProps,
+  ToastTitleProps,
+  ToastDescriptionProps,
+  ToastActionProps,
+  ToastCloseProps,
+} from './components/toast';
