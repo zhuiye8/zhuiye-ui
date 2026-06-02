@@ -1,0 +1,142 @@
+.zy-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  vertical-align: middle;
+  background-color: var(--zy-muted);
+  color: var(--zy-muted-foreground);
+}
+
+.zy-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zy-avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: var(--zy-font-weight-medium);
+  line-height: var(--zy-line-height-none);
+}
+
+/* Shapes */
+.zy-avatar--circle {
+  border-radius: var(--zy-radius-full);
+}
+
+.zy-avatar--square {
+  border-radius: var(--zy-radius-md);
+}
+
+/* Sizes */
+.zy-avatar--xs {
+  width: var(--zy-spacing-6);
+  height: var(--zy-spacing-6);
+}
+
+.zy-avatar--xs .zy-avatar__fallback {
+  font-size: var(--zy-font-size-xs);
+}
+
+.zy-avatar--sm {
+  width: var(--zy-spacing-8);
+  height: var(--zy-spacing-8);
+}
+
+.zy-avatar--sm .zy-avatar__fallback {
+  font-size: var(--zy-font-size-xs);
+}
+
+.zy-avatar--md {
+  width: var(--zy-spacing-10);
+  height: var(--zy-spacing-10);
+}
+
+.zy-avatar--md .zy-avatar__fallback {
+  font-size: var(--zy-font-size-sm);
+}
+
+.zy-avatar--lg {
+  width: var(--zy-spacing-12);
+  height: var(--zy-spacing-12);
+}
+
+.zy-avatar--lg .zy-avatar__fallback {
+  font-size: var(--zy-font-size-base);
+}
+
+.zy-avatar--xl {
+  width: var(--zy-spacing-16);
+  height: var(--zy-spacing-16);
+}
+
+.zy-avatar--xl .zy-avatar__fallback {
+  font-size: var(--zy-font-size-lg);
+}
+
+/* Overflow avatar in group */
+.zy-avatar--overflow {
+  background-color: var(--zy-muted);
+  color: var(--zy-foreground);
+}
+
+[data-theme='dark'] .zy-avatar--overflow {
+  background-color: var(--zy-surface-elevated);
+}
+
+/* Avatar Group */
+.zy-avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.zy-avatar-group__item {
+  position: relative;
+  margin-left: calc(var(--zy-spacing-2) * -1);
+}
+
+.zy-avatar-group__item .zy-avatar {
+  box-shadow: 0 0 0 2px var(--zy-background);
+}
+
+.zy-avatar-group__item:first-child {
+  margin-left: 0;
+}
+
+.zy-avatar-group__item[data-size='xs'] {
+  margin-left: calc(var(--zy-spacing-1) * -1);
+}
+
+.zy-avatar-group__item[data-size='xs']:first-child {
+  margin-left: 0;
+}
+
+.zy-avatar-group__item[data-size='sm'] {
+  margin-left: calc(var(--zy-spacing-1) * -1);
+}
+
+.zy-avatar-group__item[data-size='sm']:first-child {
+  margin-left: 0;
+}
+
+.zy-avatar-group__item[data-size='lg'] {
+  margin-left: calc(var(--zy-spacing-3) * -1);
+}
+
+.zy-avatar-group__item[data-size='lg']:first-child {
+  margin-left: 0;
+}
+
+.zy-avatar-group__item[data-size='xl'] {
+  margin-left: calc(var(--zy-spacing-4) * -1);
+}
+
+.zy-avatar-group__item[data-size='xl']:first-child {
+  margin-left: 0;
+}

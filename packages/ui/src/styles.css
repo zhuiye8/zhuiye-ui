@@ -21,3 +21,6 @@
 @import './components/tabs/Tabs.css';
 @import './components/accordion/Accordion.css';
 @import './components/collapsible/Collapsible.css';
+@import './components/alert/Alert.css';
+@import './components/progress/Progress.css';
+@import './components/avatar/Avatar.css';

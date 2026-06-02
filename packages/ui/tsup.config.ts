@@ -20,6 +20,8 @@ export default defineConfig({
     '@radix-ui/react-tabs',
     '@radix-ui/react-accordion',
     '@radix-ui/react-collapsible',
+    '@radix-ui/react-progress',
+    '@radix-ui/react-avatar',
   ],
   outDir: 'dist',
 });

@@ -170,3 +170,31 @@ export type {
   CollapsibleTitleProps,
   CollapsibleDescriptionProps,
 } from './components/collapsible';
+
+export { Alert, AlertTitle, AlertDescription, AlertActions } from './components/alert';
+export type {
+  AlertProps,
+  AlertVariant,
+  AlertSize,
+  AlertTitleProps,
+  AlertDescriptionProps,
+  AlertActionsProps,
+} from './components/alert';
+
+export { Progress, ProgressIndicator } from './components/progress';
+export type {
+  ProgressProps,
+  ProgressVariant,
+  ProgressSize,
+  ProgressIndicatorProps,
+} from './components/progress';
+
+export { Avatar, AvatarImage, AvatarFallback, AvatarGroup } from './components/avatar';
+export type {
+  AvatarProps,
+  AvatarSize,
+  AvatarShape,
+  AvatarImageProps,
+  AvatarFallbackProps,
+  AvatarGroupProps,
+} from './components/avatar';

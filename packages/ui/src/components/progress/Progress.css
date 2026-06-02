@@ -1,0 +1,74 @@
+.zy-progress {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--zy-radius-full);
+  background-color: var(--zy-muted);
+}
+
+.zy-progress__indicator {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--zy-radius-full);
+  transform: translateX(calc(var(--zy-progress-value) - 100%));
+  transition: transform var(--zy-transition-normal);
+}
+
+/* Sizes */
+.zy-progress--sm {
+  height: 4px;
+}
+
+.zy-progress--md {
+  height: 8px;
+}
+
+.zy-progress--lg {
+  height: 12px;
+}
+
+/* Variants */
+.zy-progress--primary .zy-progress__indicator {
+  background-color: var(--zy-primary);
+}
+
+.zy-progress--success .zy-progress__indicator {
+  background-color: var(--zy-color-success-500);
+}
+
+.zy-progress--warning .zy-progress__indicator {
+  background-color: var(--zy-color-warning-500);
+}
+
+.zy-progress--danger .zy-progress__indicator {
+  background-color: var(--zy-color-danger-500);
+}
+
+.zy-progress--neutral .zy-progress__indicator {
+  background-color: var(--zy-muted-foreground);
+}
+
+/* Indeterminate animation */
+.zy-progress[data-state='indeterminate'] .zy-progress__indicator {
+  width: 100%;
+  animation: zy-progress-indeterminate 1.5s infinite ease-in-out;
+  transform: translateX(-100%);
+}
+
+@keyframes zy-progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Dark mode */
+[data-theme='dark'] .zy-progress {
+  background-color: var(--zy-surface-elevated);
+}
