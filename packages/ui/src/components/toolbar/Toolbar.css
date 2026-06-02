@@ -1,0 +1,146 @@
+.zy-toolbar {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--zy-spacing-1);
+  max-width: 100%;
+  color: var(--zy-foreground);
+  outline: none;
+}
+
+.zy-toolbar[data-orientation='vertical'] {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.zy-toolbar--subtle {
+  padding: var(--zy-spacing-1);
+  border-radius: var(--zy-radius-md);
+  background-color: var(--zy-muted);
+}
+
+.zy-toolbar--framed {
+  padding: var(--zy-spacing-1);
+  border: 1px solid var(--zy-border);
+  border-radius: var(--zy-radius-md);
+  background-color: var(--zy-surface-elevated);
+  box-shadow: var(--zy-shadow-sm);
+}
+
+.zy-toolbar--sm {
+  --_toolbar-control-size: 32px;
+  --_toolbar-control-padding-x: var(--zy-spacing-2);
+  --_toolbar-font-size: var(--zy-font-size-xs);
+}
+
+.zy-toolbar--md {
+  --_toolbar-control-size: 36px;
+  --_toolbar-control-padding-x: var(--zy-spacing-3);
+  --_toolbar-font-size: var(--zy-font-size-sm);
+}
+
+.zy-toolbar--lg {
+  --_toolbar-control-size: 44px;
+  --_toolbar-control-padding-x: var(--zy-spacing-4);
+  --_toolbar-font-size: var(--zy-font-size-base);
+}
+
+.zy-toolbar__toggle-group {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--zy-spacing-1);
+}
+
+.zy-toolbar[data-orientation='vertical'] .zy-toolbar__toggle-group {
+  flex-direction: column;
+}
+
+.zy-toolbar__control {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--zy-spacing-2);
+  min-width: var(--_toolbar-control-size);
+  height: var(--_toolbar-control-size);
+  padding: 0 var(--_toolbar-control-padding-x);
+  border: none;
+  border-radius: var(--zy-radius-sm);
+  background-color: transparent;
+  color: var(--zy-muted-foreground);
+  font-family: inherit;
+  font-size: var(--_toolbar-font-size);
+  font-weight: var(--zy-font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition:
+    background-color var(--zy-transition-fast),
+    color var(--zy-transition-fast),
+    box-shadow var(--zy-transition-fast);
+  text-decoration: none;
+}
+
+.zy-toolbar__control:hover:not([data-disabled]) {
+  background-color: var(--zy-muted);
+  color: var(--zy-foreground);
+}
+
+.zy-toolbar__control:focus-visible {
+  outline: 2px solid var(--zy-focus-ring);
+  outline-offset: 2px;
+}
+
+.zy-toolbar__control[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.zy-toolbar__control[data-state='on'] {
+  background-color: var(--_toolbar-active-bg);
+  color: var(--_toolbar-active-fg);
+  box-shadow: var(--zy-shadow-sm);
+}
+
+.zy-toolbar__control--neutral {
+  --_toolbar-active-bg: var(--zy-foreground);
+  --_toolbar-active-fg: var(--zy-background);
+}
+
+.zy-toolbar__control--primary {
+  --_toolbar-active-bg: var(--zy-primary);
+  --_toolbar-active-fg: var(--zy-primary-foreground);
+}
+
+.zy-toolbar__control--danger {
+  --_toolbar-active-bg: var(--zy-danger);
+  --_toolbar-active-fg: var(--zy-danger-foreground);
+}
+
+.zy-toolbar__separator {
+  flex: 0 0 auto;
+  width: 1px;
+  height: calc(var(--_toolbar-control-size) - var(--zy-spacing-3));
+  margin: 0 var(--zy-spacing-1);
+  background-color: var(--zy-border);
+}
+
+.zy-toolbar[data-orientation='vertical'] .zy-toolbar__separator {
+  width: 100%;
+  height: 1px;
+  margin: var(--zy-spacing-1) 0;
+}
+
+@media (max-width: 640px) {
+  .zy-toolbar[data-orientation='horizontal'] {
+    display: flex;
+    width: 100%;
+    max-width: calc(100vw - var(--zy-spacing-8));
+    overflow-x: auto;
+  }
+}

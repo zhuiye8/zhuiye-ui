@@ -45,6 +45,15 @@ export type {
   IconSlotAccessibleProps,
 } from './components/icon-slot';
 
+export { AspectRatio, AspectRatioMedia } from './components/aspect-ratio';
+export type {
+  AspectRatioProps,
+  AspectRatioVariant,
+  AspectRatioRadius,
+  AspectRatioMediaProps,
+  AspectRatioMediaFit,
+} from './components/aspect-ratio';
+
 export { FormMessage } from './components/form-message';
 export type { FormMessageProps, FormMessageTone } from './components/form-message';
 
@@ -239,6 +248,23 @@ export type {
 } from './components/avatar';
 
 export {
+  ScrollArea,
+  ScrollAreaViewport,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaCorner,
+} from './components/scroll-area';
+export type {
+  ScrollAreaProps,
+  ScrollAreaVariant,
+  ScrollAreaSize,
+  ScrollAreaViewportProps,
+  ScrollAreaScrollbarProps,
+  ScrollAreaThumbProps,
+  ScrollAreaCornerProps,
+} from './components/scroll-area';
+
+export {
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
@@ -381,3 +407,23 @@ export type {
   ToggleGroupSize,
   ToggleGroupTone,
 } from './components/toggle-group';
+
+export {
+  Toolbar,
+  ToolbarButton,
+  ToolbarLink,
+  ToolbarSeparator,
+  ToolbarToggleGroup,
+  ToolbarToggleItem,
+} from './components/toolbar';
+export type {
+  ToolbarProps,
+  ToolbarVariant,
+  ToolbarSize,
+  ToolbarTone,
+  ToolbarButtonProps,
+  ToolbarLinkProps,
+  ToolbarSeparatorProps,
+  ToolbarToggleGroupProps,
+  ToolbarToggleItemProps,
+} from './components/toolbar';
