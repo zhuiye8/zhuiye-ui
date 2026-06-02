@@ -289,3 +289,25 @@ export type {
   ToastActionProps,
   ToastCloseProps,
 } from './components/toast';
+
+export { Slider, SliderTrack, SliderRange, SliderThumb } from './components/slider';
+export type {
+  SliderProps,
+  SliderSize,
+  SliderTone,
+  SliderTrackProps,
+  SliderRangeProps,
+  SliderThumbProps,
+} from './components/slider';
+
+export { Toggle } from './components/toggle';
+export type { ToggleProps, ToggleVariant, ToggleSize, ToggleTone } from './components/toggle';
+
+export { ToggleGroup, ToggleGroupItem } from './components/toggle-group';
+export type {
+  ToggleGroupProps,
+  ToggleGroupItemProps,
+  ToggleGroupVariant,
+  ToggleGroupSize,
+  ToggleGroupTone,
+} from './components/toggle-group';

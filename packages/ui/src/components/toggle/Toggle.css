@@ -1,0 +1,95 @@
+.zy-toggle {
+  --_toggle-height: 36px;
+  --_toggle-padding-x: var(--zy-spacing-3);
+  --_toggle-font-size: var(--zy-font-size-sm);
+  --_toggle-active-bg: var(--zy-muted);
+  --_toggle-active-fg: var(--zy-foreground);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--zy-spacing-2);
+  min-width: var(--_toggle-height);
+  height: var(--_toggle-height);
+  padding: 0 var(--_toggle-padding-x);
+  border: 1px solid transparent;
+  border-radius: var(--zy-radius-sm);
+  background-color: transparent;
+  color: var(--zy-muted-foreground);
+  font-family: inherit;
+  font-size: var(--_toggle-font-size);
+  font-weight: var(--zy-font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition:
+    background-color var(--zy-transition-fast),
+    border-color var(--zy-transition-fast),
+    color var(--zy-transition-fast),
+    box-shadow var(--zy-transition-fast);
+}
+
+.zy-toggle--sm {
+  --_toggle-height: 32px;
+  --_toggle-padding-x: var(--zy-spacing-2);
+  --_toggle-font-size: var(--zy-font-size-xs);
+}
+
+.zy-toggle--md {
+  --_toggle-height: 36px;
+  --_toggle-padding-x: var(--zy-spacing-3);
+  --_toggle-font-size: var(--zy-font-size-sm);
+}
+
+.zy-toggle--lg {
+  --_toggle-height: 44px;
+  --_toggle-padding-x: var(--zy-spacing-4);
+  --_toggle-font-size: var(--zy-font-size-base);
+}
+
+.zy-toggle--outline {
+  border-color: var(--zy-border);
+}
+
+.zy-toggle--soft {
+  background-color: var(--zy-muted);
+}
+
+.zy-toggle--neutral {
+  --_toggle-active-bg: var(--zy-foreground);
+  --_toggle-active-fg: var(--zy-background);
+}
+
+.zy-toggle--primary {
+  --_toggle-active-bg: var(--zy-primary);
+  --_toggle-active-fg: var(--zy-primary-foreground);
+}
+
+.zy-toggle--danger {
+  --_toggle-active-bg: var(--zy-danger);
+  --_toggle-active-fg: var(--zy-danger-foreground);
+}
+
+.zy-toggle:hover:not([data-disabled]) {
+  background-color: var(--zy-muted);
+  color: var(--zy-foreground);
+}
+
+.zy-toggle:focus-visible {
+  outline: 2px solid var(--zy-focus-ring);
+  outline-offset: 2px;
+}
+
+.zy-toggle[data-state='on'] {
+  border-color: transparent;
+  background-color: var(--_toggle-active-bg);
+  color: var(--_toggle-active-fg);
+}
+
+.zy-toggle[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

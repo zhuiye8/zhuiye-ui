@@ -148,6 +148,10 @@ export const lightTheme = {
   focusRing: '#3b82f6',
   primary: '#2563eb',
   primaryForeground: '#ffffff',
+  success: '#16a34a',
+  successForeground: '#ffffff',
+  warning: '#d97706',
+  warningForeground: '#09090b',
   danger: '#dc2626',
   dangerForeground: '#ffffff',
 } as const;
@@ -163,6 +167,10 @@ export const darkTheme = {
   focusRing: '#3b82f6',
   primary: '#3b82f6',
   primaryForeground: '#ffffff',
+  success: '#22c55e',
+  successForeground: '#09090b',
+  warning: '#f59e0b',
+  warningForeground: '#09090b',
   danger: '#ef4444',
   dangerForeground: '#ffffff',
 } as const;

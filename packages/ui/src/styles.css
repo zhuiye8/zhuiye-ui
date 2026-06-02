@@ -28,3 +28,6 @@
 @import './components/navigation-menu/NavigationMenu.css';
 @import './components/sheet/Sheet.css';
 @import './components/toast/Toast.css';
+@import './components/slider/Slider.css';
+@import './components/toggle/Toggle.css';
+@import './components/toggle-group/ToggleGroup.css';

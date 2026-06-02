@@ -12,6 +12,8 @@ const expectedKebabVars = [
   '--zy-muted-foreground',
   '--zy-focus-ring',
   '--zy-primary-foreground',
+  '--zy-success-foreground',
+  '--zy-warning-foreground',
   '--zy-danger-foreground',
 ];
 
@@ -20,6 +22,8 @@ const forbiddenCamelCaseVars = [
   '--zy-mutedForeground',
   '--zy-focusRing',
   '--zy-primaryForeground',
+  '--zy-successForeground',
+  '--zy-warningForeground',
   '--zy-dangerForeground',
 ];
 
