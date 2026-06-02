@@ -6,12 +6,13 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "pnpm --filter @zhuiye/tokens run build && pnpm --filter @zhuiye/ui run build",
+    "build": "pnpm --filter @zhuiye/tokens run build && pnpm --filter @zhuiye/i18n run build && pnpm --filter @zhuiye/ui run build",
     "build:tokens": "pnpm --filter @zhuiye/tokens run build",
+    "build:i18n": "pnpm --filter @zhuiye/i18n run build",
     "build:ui": "pnpm --filter @zhuiye/ui run build",
     "dev": "pnpm --filter @zhuiye/docs run dev",
     "storybook": "pnpm --filter @zhuiye/docs run storybook",
-    "test": "pnpm --filter @zhuiye/ui run test",
+    "test": "pnpm --filter @zhuiye/ui run test && pnpm --filter @zhuiye/i18n run test",
     "test:coverage": "pnpm --filter @zhuiye/ui run test:coverage",
     "test:e2e": "pnpm --filter @zhuiye/docs run test:e2e",
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
