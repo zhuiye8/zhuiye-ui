@@ -16,6 +16,7 @@ import {
   DropdownMenuShortcut,
   Button,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof DropdownMenu> = {
   title: 'Components/DropdownMenu',
@@ -27,32 +28,35 @@ export default meta;
 type Story = StoryObj<typeof DropdownMenu>;
 
 export const Default: Story = {
-  render: () => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open Menu</Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem>New File</DropdownMenuItem>
-        <DropdownMenuItem>New Folder</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Copy
-          <DropdownMenuShortcut>Ctrl+C</DropdownMenuShortcut>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          Paste
-          <DropdownMenuShortcut>Ctrl+V</DropdownMenuShortcut>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Select All
-          <DropdownMenuShortcut>Ctrl+A</DropdownMenuShortcut>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  ),
+  render: () => {
+    const c = useStoryCopy().dropdownMenu;
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">{c.openMenu}</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>{c.actions}</DropdownMenuLabel>
+          <DropdownMenuItem>{c.newFile}</DropdownMenuItem>
+          <DropdownMenuItem>{c.newFolder}</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            {c.copy}
+            <DropdownMenuShortcut>Ctrl+C</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            {c.paste}
+            <DropdownMenuShortcut>Ctrl+V</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            {c.selectAll}
+            <DropdownMenuShortcut>Ctrl+A</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  },
 };
 
 export const CheckboxRadio: Story = {
@@ -60,6 +64,7 @@ export const CheckboxRadio: Story = {
     const [showToolbar, setShowToolbar] = useState(true);
     const [showStatusbar, setShowStatusbar] = useState(false);
     const [theme, setTheme] = useState('light');
+    const c = useStoryCopy().dropdownMenu;
 
     return (
       <div
@@ -81,22 +86,22 @@ export const CheckboxRadio: Story = {
         </p>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">View Options</Button>
+            <Button variant="outline">{c.viewOptions}</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+            <DropdownMenuLabel>{c.appearance}</DropdownMenuLabel>
             <DropdownMenuCheckboxItem checked={showToolbar} onCheckedChange={setShowToolbar}>
-              Show Toolbar
+              {c.showToolbar}
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem checked={showStatusbar} onCheckedChange={setShowStatusbar}>
-              Show Statusbar
+              {c.showStatusbar}
             </DropdownMenuCheckboxItem>
             <DropdownMenuSeparator />
-            <DropdownMenuLabel>Theme</DropdownMenuLabel>
+            <DropdownMenuLabel>{c.theme}</DropdownMenuLabel>
             <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
-              <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="light">{c.light}</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="dark">{c.dark}</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="system">{c.system}</DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -106,58 +111,65 @@ export const CheckboxRadio: Story = {
 };
 
 export const Submenu: Story = {
-  render: () => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline">Actions</Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem>New File</DropdownMenuItem>
-        <DropdownMenuItem>Open</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Export As</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuItem>PDF</DropdownMenuItem>
-            <DropdownMenuItem>HTML</DropdownMenuItem>
-            <DropdownMenuItem>Markdown</DropdownMenuItem>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Share</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuItem>Email</DropdownMenuItem>
-            <DropdownMenuItem>Link</DropdownMenuItem>
-            <DropdownMenuItem>Embed</DropdownMenuItem>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem tone="danger">Delete</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  ),
+  render: () => {
+    const c = useStoryCopy().dropdownMenu;
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">{c.actions}</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>{c.newFile}</DropdownMenuItem>
+          <DropdownMenuItem>{c.open}</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>{c.exportAs}</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>{c.pdf}</DropdownMenuItem>
+              <DropdownMenuItem>{c.html}</DropdownMenuItem>
+              <DropdownMenuItem>{c.markdown}</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>{c.share}</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>{c.email}</DropdownMenuItem>
+              <DropdownMenuItem>{c.link}</DropdownMenuItem>
+              <DropdownMenuItem>{c.embed}</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem tone="danger">{c.delete}</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  },
 };
 
 export const DisabledItem: Story = {
-  render: () => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open Menu</Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Duplicate</DropdownMenuItem>
-        <DropdownMenuItem disabled>Archive (Locked)</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem disabled>Delete (Locked)</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  ),
+  render: () => {
+    const c = useStoryCopy().dropdownMenu;
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">{c.openMenu}</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>{c.edit}</DropdownMenuItem>
+          <DropdownMenuItem>{c.duplicate}</DropdownMenuItem>
+          <DropdownMenuItem disabled>{c.archiveLocked}</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem disabled>{c.deleteLocked}</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  },
 };
 
 export const ControlledOpen: Story = {
   render: function ControlledOpenStory() {
     const [open, setOpen] = useState(false);
+    const c = useStoryCopy().dropdownMenu;
     return (
       <div
         style={{
@@ -176,14 +188,14 @@ export const ControlledOpen: Story = {
         >
           Open: {String(open)}
         </p>
-        <Button onClick={() => setOpen(true)}>Open Programmatically</Button>
+        <Button onClick={() => setOpen(true)}>{c.openProgrammatically}</Button>
         <DropdownMenu open={open} onOpenChange={setOpen}>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">Trigger</Button>
+            <Button variant="outline">{c.trigger}</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem onSelect={() => setOpen(false)}>Close Me</DropdownMenuItem>
-            <DropdownMenuItem>Stay Open</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setOpen(false)}>{c.closeMe}</DropdownMenuItem>
+            <DropdownMenuItem>{c.stayOpen}</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -196,35 +208,38 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        padding: '64px 24px 120px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: 'var(--zy-radius-md)',
-      }}
-    >
-      <DropdownMenu defaultOpen>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">Dark Menu</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem>New File</DropdownMenuItem>
-          <DropdownMenuItem>Open</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            Copy
-            <DropdownMenuShortcut>Ctrl+C</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Paste
-            <DropdownMenuShortcut>Ctrl+V</DropdownMenuShortcut>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().dropdownMenu;
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          padding: '64px 24px 120px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: 'var(--zy-radius-md)',
+        }}
+      >
+        <DropdownMenu defaultOpen>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">{c.darkMenu}</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>{c.actions}</DropdownMenuLabel>
+            <DropdownMenuItem>{c.newFile}</DropdownMenuItem>
+            <DropdownMenuItem>{c.open}</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              {c.copy}
+              <DropdownMenuShortcut>Ctrl+C</DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              {c.paste}
+              <DropdownMenuShortcut>Ctrl+V</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    );
+  },
 };

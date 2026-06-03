@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Switch } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Switch> = {
   title: 'Components/Switch',
@@ -22,16 +23,18 @@ const meta: Meta<typeof Switch> = {
 export default meta;
 type Story = StoryObj<typeof Switch>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <Switch label={useStoryCopy().switchComp.enableNotifications} />,
+};
 
 export const Checked: Story = {
-  args: { defaultChecked: true },
+  render: () => <Switch label={useStoryCopy().switchComp.enableNotifications} defaultChecked />,
 };
 
 export const WithDescription: Story = {
-  args: {
-    label: 'Dark mode',
-    description: 'Switch between light and dark themes',
+  render: () => {
+    const c = useStoryCopy().switchComp;
+    return <Switch label={c.darkMode} description={c.switchThemes} />;
   },
 };
 
@@ -44,30 +47,33 @@ export const DisabledChecked: Story = {
 };
 
 export const Invalid: Story = {
-  args: {
-    invalid: true,
-    errorMessage: 'This setting must be enabled',
+  render: () => {
+    const c = useStoryCopy().switchComp;
+    return <Switch invalid errorMessage={c.mustBeEnabled} />;
   },
 };
 
 export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-    label: 'Enable two-factor authentication for your account',
+  render: () => {
+    const c = useStoryCopy().switchComp;
+    return <Switch fullWidth label={c.enable2FA} />;
   },
   parameters: { layout: 'padded' },
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <Switch label="Default" />
-      <Switch label="Checked" defaultChecked />
-      <Switch label="Disabled" disabled />
-      <Switch label="Disabled checked" disabled defaultChecked />
-      <Switch label="Invalid" invalid errorMessage="Must be enabled" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().switchComp;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <Switch label={c.enableNotifications} />
+        <Switch label={c.checked} defaultChecked />
+        <Switch label={c.enableNotifications} disabled />
+        <Switch label={c.disabledChecked} disabled defaultChecked />
+        <Switch label={c.enableNotifications} invalid errorMessage={c.mustEnabled} />
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -75,22 +81,25 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-      }}
-    >
-      <Switch label="Default" />
-      <Switch label="Checked" defaultChecked />
-      <Switch label="Invalid" invalid errorMessage="Error message" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().switchComp;
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+        }}
+      >
+        <Switch label={c.enableNotifications} />
+        <Switch label={c.checked} defaultChecked />
+        <Switch label={c.enableNotifications} invalid errorMessage={c.errorMessage} />
+      </div>
+    );
+  },
 };

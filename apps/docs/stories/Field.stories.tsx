@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Field, Input } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Field> = {
   title: 'Components/Field',
@@ -27,13 +28,24 @@ export const Required: Story = {
 };
 
 export const WithDescription: Story = {
-  args: { description: 'We will never share your email.' },
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Field label={copy.field.emailAddress} description={copy.field.neverShare}>
+        <Input placeholder={copy.field.janeEmail} fullWidth />
+      </Field>
+    );
+  },
 };
 
 export const WithError: Story = {
-  args: {
-    errorMessage: 'Please enter a valid email address.',
-    invalid: true,
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Field label={copy.field.emailAddress} errorMessage={copy.field.invalidEmail} invalid>
+        <Input placeholder={copy.field.janeEmail} fullWidth />
+      </Field>
+    );
   },
 };
 
@@ -47,56 +59,62 @@ export const FullWidth: Story = {
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '320px' }}>
-      <Field label="Default field">
-        <Input placeholder="Enter text" fullWidth />
-      </Field>
-      <Field label="Required field" required>
-        <Input placeholder="Required" fullWidth />
-      </Field>
-      <Field label="With description" description="This is help text.">
-        <Input placeholder="Help text below" fullWidth />
-      </Field>
-      <Field label="Invalid field" invalid errorMessage="This field is required.">
-        <Input placeholder="Error state" fullWidth />
-      </Field>
-      <Field label="Disabled field" disabled>
-        <Input placeholder="Disabled" fullWidth />
-      </Field>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '320px' }}>
+        <Field label={copy.field.defaultField}>
+          <Input placeholder={copy.field.enterText} fullWidth />
+        </Field>
+        <Field label={copy.field.requiredField} required>
+          <Input placeholder={copy.field.requiredPlaceholder} fullWidth />
+        </Field>
+        <Field label={copy.field.withDescription} description={copy.field.helpText}>
+          <Input placeholder={copy.field.helpTextBelow} fullWidth />
+        </Field>
+        <Field label={copy.field.invalidField} invalid errorMessage={copy.field.fieldRequired}>
+          <Input placeholder={copy.field.errorPlaceholder} fullWidth />
+        </Field>
+        <Field label={copy.field.disabledField} disabled>
+          <Input placeholder={copy.field.disabledPlaceholder} fullWidth />
+        </Field>
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
   parameters: { backgrounds: { disable: true } },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: 'var(--zy-radius-md)',
-        width: '320px',
-      }}
-    >
-      <Field label="Default field">
-        <Input placeholder="Enter text" fullWidth />
-      </Field>
-      <Field label="Required field" required>
-        <Input placeholder="Required" fullWidth />
-      </Field>
-      <Field label="With description" description="Help text here.">
-        <Input placeholder="With help" fullWidth />
-      </Field>
-      <Field label="Invalid field" invalid errorMessage="Something went wrong.">
-        <Input placeholder="Error" fullWidth />
-      </Field>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: 'var(--zy-radius-md)',
+          width: '320px',
+        }}
+      >
+        <Field label={copy.field.defaultField}>
+          <Input placeholder={copy.field.enterText} fullWidth />
+        </Field>
+        <Field label={copy.field.requiredField} required>
+          <Input placeholder={copy.field.requiredPlaceholder} fullWidth />
+        </Field>
+        <Field label={copy.field.withDescription} description={copy.field.helpTextHere}>
+          <Input placeholder="With help" fullWidth />
+        </Field>
+        <Field label={copy.field.invalidField} invalid errorMessage={copy.field.somethingWrong}>
+          <Input placeholder={copy.field.errorPlaceholder} fullWidth />
+        </Field>
+      </div>
+    );
+  },
 };

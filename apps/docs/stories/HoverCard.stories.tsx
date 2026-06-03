@@ -9,6 +9,7 @@ import {
   HoverCardTitle,
   HoverCardDescription,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof HoverCard> = {
   title: 'Components/HoverCard',
@@ -20,6 +21,7 @@ export default meta;
 type Story = StoryObj<typeof HoverCard>;
 
 function ProfilePreview() {
+  const copy = useStoryCopy();
   return (
     <HoverCardContent size="md">
       <HoverCardHeader>
@@ -38,14 +40,12 @@ function ProfilePreview() {
         >
           ZY
         </div>
-        <HoverCardTitle>Zhuiye Design Systems</HoverCardTitle>
-        <HoverCardDescription>
-          Production primitives, tokens, and accessible interaction patterns for product UI.
-        </HoverCardDescription>
+        <HoverCardTitle>{copy.hoverCard.zhuiyeDesign}</HoverCardTitle>
+        <HoverCardDescription>{copy.hoverCard.zhuiyeDesc}</HoverCardDescription>
       </HoverCardHeader>
       <HoverCardFooter>
-        <span>Component suite</span>
-        <span>438 tests</span>
+        <span>{copy.hoverCard.componentSuite}</span>
+        <span>438 {copy.hoverCard.tests}</span>
       </HoverCardFooter>
     </HoverCardContent>
   );
@@ -61,67 +61,69 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'grid',
-        gap: 'calc(var(--zy-spacing-20) + var(--zy-spacing-12))',
-        justifyItems: 'start',
-        minWidth: 'min(720px, calc(100vw - var(--zy-spacing-8)))',
-      }}
-    >
-      {(['sm', 'md', 'lg'] as const).map((size) => (
-        <HoverCard key={size} defaultOpen openDelay={0}>
-          <HoverCardTrigger href={`#${size}`}>{size}</HoverCardTrigger>
-          <HoverCardContent size={size} showArrow={false} side="bottom" align="start">
-            <HoverCardHeader>
-              <HoverCardTitle>{size.toUpperCase()} card</HoverCardTitle>
-              <HoverCardDescription>
-                Compact previews keep related details close to the trigger.
-              </HoverCardDescription>
-            </HoverCardHeader>
-          </HoverCardContent>
-        </HoverCard>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gap: 'calc(var(--zy-spacing-20) + var(--zy-spacing-12))',
+          justifyItems: 'start',
+          minWidth: 'min(720px, calc(100vw - var(--zy-spacing-8)))',
+        }}
+      >
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <HoverCard key={size} defaultOpen openDelay={0}>
+            <HoverCardTrigger href={`#${size}`}>{size}</HoverCardTrigger>
+            <HoverCardContent size={size} showArrow={false} side="bottom" align="start">
+              <HoverCardHeader>
+                <HoverCardTitle>{size.toUpperCase()} card</HoverCardTitle>
+                <HoverCardDescription>{copy.hoverCard.compactPreview}</HoverCardDescription>
+              </HoverCardHeader>
+            </HoverCardContent>
+          </HoverCard>
+        ))}
+      </div>
+    );
+  },
 };
 
 export const RichContent: Story = {
-  render: () => (
-    <HoverCard defaultOpen openDelay={0}>
-      <HoverCardTrigger href="#release">Release health</HoverCardTrigger>
-      <HoverCardContent size="lg" side="right">
-        <HoverCardHeader>
-          <HoverCardTitle>Release health</HoverCardTitle>
-          <HoverCardDescription>
-            Current build, test, and documentation signals across the component library.
-          </HoverCardDescription>
-        </HoverCardHeader>
-        <HoverCardBody>
-          {[
-            ['Build', 'Passing'],
-            ['Tests', '438 passing'],
-            ['Docs', 'Storybook ready'],
-          ].map(([label, value]) => (
-            <div
-              key={label}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                gap: 'var(--zy-spacing-6)',
-                paddingBlock: 'var(--zy-spacing-1)',
-                fontSize: 'var(--zy-font-size-sm)',
-              }}
-            >
-              <span style={{ color: 'var(--zy-muted-foreground)' }}>{label}</span>
-              <strong>{value}</strong>
-            </div>
-          ))}
-        </HoverCardBody>
-      </HoverCardContent>
-    </HoverCard>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <HoverCard defaultOpen openDelay={0}>
+        <HoverCardTrigger href="#release">{copy.hoverCard.releaseHealth}</HoverCardTrigger>
+        <HoverCardContent size="lg" side="right">
+          <HoverCardHeader>
+            <HoverCardTitle>{copy.hoverCard.releaseHealth}</HoverCardTitle>
+            <HoverCardDescription>{copy.hoverCard.releaseDesc}</HoverCardDescription>
+          </HoverCardHeader>
+          <HoverCardBody>
+            {[
+              [copy.hoverCard.build, copy.hoverCard.passing],
+              [copy.hoverCard.testsLabel, `438 ${copy.hoverCard.testsPassing}`],
+              [copy.hoverCard.docs, copy.hoverCard.storybookReady],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  gap: 'var(--zy-spacing-6)',
+                  paddingBlock: 'var(--zy-spacing-1)',
+                  fontSize: 'var(--zy-font-size-sm)',
+                }}
+              >
+                <span style={{ color: 'var(--zy-muted-foreground)' }}>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
+          </HoverCardBody>
+        </HoverCardContent>
+      </HoverCard>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -129,20 +131,23 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        padding: 'var(--zy-spacing-6)',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: 'var(--zy-radius-md)',
-      }}
-    >
-      <HoverCard defaultOpen openDelay={0}>
-        <HoverCardTrigger href="#dark-hover">Dark preview</HoverCardTrigger>
-        <ProfilePreview />
-      </HoverCard>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          padding: 'var(--zy-spacing-6)',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: 'var(--zy-radius-md)',
+        }}
+      >
+        <HoverCard defaultOpen openDelay={0}>
+          <HoverCardTrigger href="#dark-hover">{copy.hoverCard.darkPreview}</HoverCardTrigger>
+          <ProfilePreview />
+        </HoverCard>
+      </div>
+    );
+  },
 };

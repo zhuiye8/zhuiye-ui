@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { IconSlot } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const StarIcon = () => (
   <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">
@@ -121,27 +122,30 @@ export const AllSizes: Story = {
 };
 
 export const WithButton: Story = {
-  render: () => (
-    <button
-      type="button"
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '8px',
-        padding: '8px 16px',
-        border: '1px solid var(--zy-border)',
-        borderRadius: 'var(--zy-radius-md)',
-        background: 'var(--zy-surface)',
-        cursor: 'pointer',
-        fontSize: '14px',
-      }}
-    >
-      <IconSlot size="sm">
-        <SearchIcon />
-      </IconSlot>
-      Search
-    </button>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <button
+        type="button"
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '8px 16px',
+          border: '1px solid var(--zy-border)',
+          borderRadius: 'var(--zy-radius-md)',
+          background: 'var(--zy-surface)',
+          cursor: 'pointer',
+          fontSize: '14px',
+        }}
+      >
+        <IconSlot size="sm">
+          <SearchIcon />
+        </IconSlot>
+        {copy.iconSlot.search}
+      </button>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -152,36 +156,39 @@ export const WithButton: Story = {
 };
 
 export const WithInput: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        padding: '8px 12px',
-        border: '1px solid var(--zy-border)',
-        borderRadius: 'var(--zy-radius-md)',
-        background: 'var(--zy-surface)',
-        width: '260px',
-      }}
-    >
-      <IconSlot size="sm">
-        <SearchIcon />
-      </IconSlot>
-      <input
-        type="text"
-        placeholder="Search..."
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
         style={{
-          border: 'none',
-          outline: 'none',
-          background: 'transparent',
-          flex: 1,
-          fontSize: '14px',
-          color: 'inherit',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '8px 12px',
+          border: '1px solid var(--zy-border)',
+          borderRadius: 'var(--zy-radius-md)',
+          background: 'var(--zy-surface)',
+          width: '260px',
         }}
-      />
-    </div>
-  ),
+      >
+        <IconSlot size="sm">
+          <SearchIcon />
+        </IconSlot>
+        <input
+          type="text"
+          placeholder={copy.iconSlot.searchPlaceholder}
+          style={{
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            flex: 1,
+            fontSize: '14px',
+            color: 'inherit',
+          }}
+        />
+      </div>
+    );
+  },
   parameters: {
     docs: {
       description: {

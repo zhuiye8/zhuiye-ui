@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox, Switch, RadioGroup, Radio } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta = {
   title: 'Components/ChoicePrimitives',
@@ -18,101 +19,124 @@ export default meta;
 type Story = StoryObj;
 
 export const AllChoicePrimitives: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '32px',
-        maxWidth: '400px',
-      }}
-    >
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>Checkbox</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Checkbox label="Default" />
-          <Checkbox label="Checked" defaultChecked />
-          <Checkbox label="Indeterminate" indeterminate />
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px',
+          maxWidth: '400px',
+        }}
+      >
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.checkbox}
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Checkbox label={copy.choice.default} />
+            <Checkbox label={copy.choice.checked} defaultChecked />
+            <Checkbox label={copy.choice.indeterminate} indeterminate />
+          </div>
+        </div>
+
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.switchLabel}
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Switch label={copy.choice.default} />
+            <Switch label={copy.choice.checked} defaultChecked />
+          </div>
+        </div>
+
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.radioGroup}
+          </h3>
+          <RadioGroup label={copy.choice.selectOption} defaultValue="b">
+            <Radio value="a" label={copy.choice.optionA} />
+            <Radio value="b" label={copy.choice.optionB} />
+            <Radio value="c" label={copy.choice.optionC} />
+          </RadioGroup>
         </div>
       </div>
-
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>Switch</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Switch label="Default" />
-          <Switch label="Checked" defaultChecked />
-        </div>
-      </div>
-
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>RadioGroup</h3>
-        <RadioGroup label="Select an option" defaultValue="b">
-          <Radio value="a" label="Option A" />
-          <Radio value="b" label="Option B" />
-          <Radio value="c" label="Option C" />
-        </RadioGroup>
-      </div>
-    </div>
-  ),
+    );
+  },
 };
 
 export const DisabledStates: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '32px',
-        maxWidth: '400px',
-      }}
-    >
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>Disabled Checkbox</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Checkbox label="Disabled" disabled />
-          <Checkbox label="Disabled checked" disabled defaultChecked />
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px',
+          maxWidth: '400px',
+        }}
+      >
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.disabledCheckbox}
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Checkbox label={copy.choice.disabled} disabled />
+            <Checkbox label={copy.choice.disabledChecked} disabled defaultChecked />
+          </div>
+        </div>
+
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.disabledSwitch}
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Switch label={copy.choice.disabled} disabled />
+            <Switch label={copy.choice.disabledChecked} disabled defaultChecked />
+          </div>
+        </div>
+
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.disabledRadioGroup}
+          </h3>
+          <RadioGroup label={copy.choice.disabledGroup} disabled defaultValue="a">
+            <Radio value="a" label={copy.choice.optionA} />
+            <Radio value="b" label={copy.choice.optionB} />
+          </RadioGroup>
         </div>
       </div>
-
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>Disabled Switch</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Switch label="Disabled" disabled />
-          <Switch label="Disabled checked" disabled defaultChecked />
-        </div>
-      </div>
-
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
-          Disabled RadioGroup
-        </h3>
-        <RadioGroup label="Disabled group" disabled defaultValue="a">
-          <Radio value="a" label="Option A" />
-          <Radio value="b" label="Option B" />
-        </RadioGroup>
-      </div>
-    </div>
-  ),
+    );
+  },
 };
 
 export const ErrorStates: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '32px',
-        maxWidth: '400px',
-      }}
-    >
-      <Checkbox label="Accept terms" invalid errorMessage="You must accept the terms" />
-      <Switch label="Enable" invalid errorMessage="This setting must be enabled" />
-      <RadioGroup label="Choose one" invalid errorMessage="Please select an option">
-        <Radio value="a" label="Option A" />
-        <Radio value="b" label="Option B" />
-      </RadioGroup>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px',
+          maxWidth: '400px',
+        }}
+      >
+        <Checkbox
+          label={copy.choice.acceptTerms}
+          invalid
+          errorMessage={copy.choice.mustAcceptTerms}
+        />
+        <Switch label={copy.choice.enable} invalid errorMessage={copy.choice.mustEnable} />
+        <RadioGroup label={copy.choice.select} invalid errorMessage={copy.choice.pleaseSelect}>
+          <Radio value="a" label={copy.choice.optionA} />
+          <Radio value="b" label={copy.choice.optionB} />
+        </RadioGroup>
+      </div>
+    );
+  },
 };
 
 export const DarkThemeAll: Story = {
@@ -120,45 +144,54 @@ export const DarkThemeAll: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '32px',
-        maxWidth: '400px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-      }}
-    >
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>Checkbox</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Checkbox label="Default" />
-          <Checkbox label="Checked" defaultChecked />
-          <Checkbox label="Invalid" invalid errorMessage="Required" />
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px',
+          maxWidth: '400px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+        }}
+      >
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.checkbox}
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Checkbox label={copy.choice.default} />
+            <Checkbox label={copy.choice.checked} defaultChecked />
+            <Checkbox label={copy.choice.invalid} invalid errorMessage={copy.choice.required} />
+          </div>
+        </div>
+
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.switchLabel}
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Switch label={copy.choice.default} />
+            <Switch label={copy.choice.checked} defaultChecked />
+            <Switch label={copy.choice.invalid} invalid errorMessage={copy.choice.required} />
+          </div>
+        </div>
+
+        <div>
+          <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>
+            {copy.choice.radioGroup}
+          </h3>
+          <RadioGroup label={copy.choice.select} defaultValue="b">
+            <Radio value="a" label={copy.choice.optionA} />
+            <Radio value="b" label={copy.choice.optionB} />
+          </RadioGroup>
         </div>
       </div>
-
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>Switch</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Switch label="Default" />
-          <Switch label="Checked" defaultChecked />
-          <Switch label="Invalid" invalid errorMessage="Required" />
-        </div>
-      </div>
-
-      <div>
-        <h3 style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>RadioGroup</h3>
-        <RadioGroup label="Select" defaultValue="b">
-          <Radio value="a" label="Option A" />
-          <Radio value="b" label="Option B" />
-        </RadioGroup>
-      </div>
-    </div>
-  ),
+    );
+  },
 };

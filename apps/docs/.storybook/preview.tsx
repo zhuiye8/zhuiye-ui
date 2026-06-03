@@ -10,7 +10,7 @@ const withTheme = (Story: StoryFn, context: { globals: { theme?: string } }) => 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
-  return Story();
+  return <Story />;
 };
 
 const withLocale = (Story: StoryFn, context: { globals: { locale?: string } }) => {
@@ -18,7 +18,11 @@ const withLocale = (Story: StoryFn, context: { globals: { locale?: string } }) =
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
-  return <LocaleProvider locale={locale}>{Story()}</LocaleProvider>;
+  return (
+    <LocaleProvider locale={locale}>
+      <Story />
+    </LocaleProvider>
+  );
 };
 
 const preview: Preview = {

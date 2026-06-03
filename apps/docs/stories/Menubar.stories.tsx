@@ -15,6 +15,7 @@ import {
   MenubarSubContent,
   MenubarShortcut,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Menubar> = {
   title: 'Components/Menubar',
@@ -26,44 +27,45 @@ export default meta;
 type Story = StoryObj<typeof Menubar>;
 
 function EditorMenubar({ variant = 'framed' }: { variant?: 'plain' | 'subtle' | 'framed' }) {
+  const copy = useStoryCopy();
   return (
     <Menubar variant={variant} defaultValue="file">
       <MenubarMenu value="file">
-        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarTrigger>{copy.menubar.file}</MenubarTrigger>
         <MenubarContent>
-          <MenubarLabel>File</MenubarLabel>
+          <MenubarLabel>{copy.menubar.file}</MenubarLabel>
           <MenubarItem>
-            New file
-            <MenubarShortcut>Ctrl+N</MenubarShortcut>
+            {copy.menubar.newFile}
+            <MenubarShortcut>{copy.menubar.ctrlN}</MenubarShortcut>
           </MenubarItem>
-          <MenubarItem>Open workspace</MenubarItem>
+          <MenubarItem>{copy.menubar.openWorkspace}</MenubarItem>
           <MenubarSeparator />
-          <MenubarItem tone="danger">Close workspace</MenubarItem>
+          <MenubarItem tone="danger">{copy.menubar.closeWorkspace}</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu value="edit">
-        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarTrigger>{copy.menubar.edit}</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>Undo</MenubarItem>
-          <MenubarItem>Redo</MenubarItem>
+          <MenubarItem>{copy.menubar.undo}</MenubarItem>
+          <MenubarItem>{copy.menubar.redo}</MenubarItem>
           <MenubarSub>
-            <MenubarSubTrigger>Transform</MenubarSubTrigger>
+            <MenubarSubTrigger>{copy.menubar.transform}</MenubarSubTrigger>
             <MenubarSubContent>
-              <MenubarItem>Scale</MenubarItem>
-              <MenubarItem>Rotate</MenubarItem>
+              <MenubarItem>{copy.menubar.scale}</MenubarItem>
+              <MenubarItem>{copy.menubar.rotate}</MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu value="view">
-        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarTrigger>{copy.menubar.view}</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem checked>Show rulers</MenubarCheckboxItem>
-          <MenubarCheckboxItem>Show grid</MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>{copy.menubar.showRulers}</MenubarCheckboxItem>
+          <MenubarCheckboxItem>{copy.menubar.showGrid}</MenubarCheckboxItem>
           <MenubarSeparator />
           <MenubarRadioGroup value="comfortable">
-            <MenubarRadioItem value="compact">Compact</MenubarRadioItem>
-            <MenubarRadioItem value="comfortable">Comfortable</MenubarRadioItem>
+            <MenubarRadioItem value="compact">{copy.menubar.compact}</MenubarRadioItem>
+            <MenubarRadioItem value="comfortable">{copy.menubar.comfortable}</MenubarRadioItem>
           </MenubarRadioGroup>
         </MenubarContent>
       </MenubarMenu>
@@ -92,33 +94,36 @@ export const Variants: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'grid',
-        gap: 'var(--zy-spacing-5)',
-        justifyItems: 'start',
-      }}
-    >
-      {(['sm', 'md', 'lg'] as const).map((size) => (
-        <Menubar key={size} variant="framed" size={size} defaultValue="file">
-          <MenubarMenu value="file">
-            <MenubarTrigger showChevron>File</MenubarTrigger>
-            <MenubarContent showArrow={false}>
-              <MenubarItem>New file</MenubarItem>
-              <MenubarItem>Open</MenubarItem>
-            </MenubarContent>
-          </MenubarMenu>
-          <MenubarMenu value="view">
-            <MenubarTrigger>View</MenubarTrigger>
-            <MenubarContent showArrow={false}>
-              <MenubarItem>Zoom in</MenubarItem>
-            </MenubarContent>
-          </MenubarMenu>
-        </Menubar>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gap: 'var(--zy-spacing-5)',
+          justifyItems: 'start',
+        }}
+      >
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <Menubar key={size} variant="framed" size={size} defaultValue="file">
+            <MenubarMenu value="file">
+              <MenubarTrigger showChevron>{copy.menubar.file}</MenubarTrigger>
+              <MenubarContent showArrow={false}>
+                <MenubarItem>{copy.menubar.newFile}</MenubarItem>
+                <MenubarItem>{copy.menubar.open}</MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+            <MenubarMenu value="view">
+              <MenubarTrigger>{copy.menubar.view}</MenubarTrigger>
+              <MenubarContent showArrow={false}>
+                <MenubarItem>{copy.menubar.zoomIn}</MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>
+        ))}
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {

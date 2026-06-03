@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Badge } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Badge> = {
   title: 'Components/Badge',
@@ -32,15 +33,27 @@ export const Primary: Story = {
 };
 
 export const Success: Story = {
-  args: { variant: 'success', children: 'Active' },
+  args: { variant: 'success' },
+  render: (args) => {
+    const copy = useStoryCopy();
+    return <Badge {...args}>{copy.badge.active}</Badge>;
+  },
 };
 
 export const Warning: Story = {
-  args: { variant: 'warning', children: 'Pending' },
+  args: { variant: 'warning' },
+  render: (args) => {
+    const copy = useStoryCopy();
+    return <Badge {...args}>{copy.badge.pending}</Badge>;
+  },
 };
 
 export const Danger: Story = {
-  args: { variant: 'danger', children: 'Error' },
+  args: { variant: 'danger' },
+  render: (args) => {
+    const copy = useStoryCopy();
+    return <Badge {...args}>{copy.badge.error}</Badge>;
+  },
 };
 
 export const Small: Story = {
@@ -48,24 +61,30 @@ export const Small: Story = {
 };
 
 export const AllVariants: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      <Badge variant="neutral">Neutral</Badge>
-      <Badge variant="primary">Primary</Badge>
-      <Badge variant="success">Success</Badge>
-      <Badge variant="warning">Warning</Badge>
-      <Badge variant="danger">Danger</Badge>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <Badge variant="neutral">{copy.badge.neutral}</Badge>
+        <Badge variant="primary">{copy.badge.primary}</Badge>
+        <Badge variant="success">{copy.badge.success}</Badge>
+        <Badge variant="warning">{copy.badge.warning}</Badge>
+        <Badge variant="danger">{copy.badge.danger}</Badge>
+      </div>
+    );
+  },
 };
 
 export const AllSizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <Badge size="sm">Small</Badge>
-      <Badge size="md">Medium</Badge>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <Badge size="sm">{copy.badge.small}</Badge>
+        <Badge size="md">{copy.badge.medium}</Badge>
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -73,23 +92,26 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        gap: '8px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-      }}
-    >
-      <Badge variant="neutral">Neutral</Badge>
-      <Badge variant="primary">Primary</Badge>
-      <Badge variant="success">Success</Badge>
-      <Badge variant="warning">Warning</Badge>
-      <Badge variant="danger">Danger</Badge>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          gap: '8px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+        }}
+      >
+        <Badge variant="neutral">{copy.badge.neutral}</Badge>
+        <Badge variant="primary">{copy.badge.primary}</Badge>
+        <Badge variant="success">{copy.badge.success}</Badge>
+        <Badge variant="warning">{copy.badge.warning}</Badge>
+        <Badge variant="danger">{copy.badge.danger}</Badge>
+      </div>
+    );
+  },
 };

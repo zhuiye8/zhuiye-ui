@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof ToggleGroup> = {
   title: 'Components/ToggleGroup',
@@ -12,72 +13,94 @@ export default meta;
 type Story = StoryObj<typeof ToggleGroup>;
 
 export const Single: Story = {
-  render: () => (
-    <ToggleGroup type="single" defaultValue="center" aria-label="Text alignment">
-      <ToggleGroupItem value="left">Left</ToggleGroupItem>
-      <ToggleGroupItem value="center">Center</ToggleGroupItem>
-      <ToggleGroupItem value="right">Right</ToggleGroupItem>
-    </ToggleGroup>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <ToggleGroup type="single" defaultValue="center" aria-label={copy.toggleGroup.textAlignment}>
+        <ToggleGroupItem value="left">{copy.toggleGroup.left}</ToggleGroupItem>
+        <ToggleGroupItem value="center">{copy.toggleGroup.center}</ToggleGroupItem>
+        <ToggleGroupItem value="right">{copy.toggleGroup.right}</ToggleGroupItem>
+      </ToggleGroup>
+    );
+  },
 };
 
 export const Multiple: Story = {
-  render: () => (
-    <ToggleGroup type="multiple" defaultValue={['bold', 'underline']} aria-label="Text style">
-      <ToggleGroupItem value="bold">B</ToggleGroupItem>
-      <ToggleGroupItem value="italic">I</ToggleGroupItem>
-      <ToggleGroupItem value="underline">U</ToggleGroupItem>
-    </ToggleGroup>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <ToggleGroup
+        type="multiple"
+        defaultValue={['bold', 'underline']}
+        aria-label={copy.toggleGroup.textStyle}
+      >
+        <ToggleGroupItem value="bold">B</ToggleGroupItem>
+        <ToggleGroupItem value="italic">I</ToggleGroupItem>
+        <ToggleGroupItem value="underline">U</ToggleGroupItem>
+      </ToggleGroup>
+    );
+  },
 };
 
 export const VariantsAndSizes: Story = {
-  render: () => (
-    <div
-      style={{
-        display: 'grid',
-        gap: 'var(--zy-spacing-5)',
-        justifyItems: 'start',
-      }}
-    >
-      <ToggleGroup type="single" defaultValue="day" variant="ghost" size="sm">
-        <ToggleGroupItem value="day">Day</ToggleGroupItem>
-        <ToggleGroupItem value="week">Week</ToggleGroupItem>
-        <ToggleGroupItem value="month">Month</ToggleGroupItem>
-      </ToggleGroup>
-      <ToggleGroup type="single" defaultValue="week" variant="outline" tone="primary">
-        <ToggleGroupItem value="day">Day</ToggleGroupItem>
-        <ToggleGroupItem value="week">Week</ToggleGroupItem>
-        <ToggleGroupItem value="month">Month</ToggleGroupItem>
-      </ToggleGroup>
-      <ToggleGroup type="single" defaultValue="month" variant="soft" size="lg">
-        <ToggleGroupItem value="day">Day</ToggleGroupItem>
-        <ToggleGroupItem value="week">Week</ToggleGroupItem>
-        <ToggleGroupItem value="month">Month</ToggleGroupItem>
-      </ToggleGroup>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gap: 'var(--zy-spacing-5)',
+          justifyItems: 'start',
+        }}
+      >
+        <ToggleGroup type="single" defaultValue="day" variant="ghost" size="sm">
+          <ToggleGroupItem value="day">{copy.toggleGroup.day}</ToggleGroupItem>
+          <ToggleGroupItem value="week">{copy.toggleGroup.week}</ToggleGroupItem>
+          <ToggleGroupItem value="month">{copy.toggleGroup.month}</ToggleGroupItem>
+        </ToggleGroup>
+        <ToggleGroup type="single" defaultValue="week" variant="outline" tone="primary">
+          <ToggleGroupItem value="day">{copy.toggleGroup.day}</ToggleGroupItem>
+          <ToggleGroupItem value="week">{copy.toggleGroup.week}</ToggleGroupItem>
+          <ToggleGroupItem value="month">{copy.toggleGroup.month}</ToggleGroupItem>
+        </ToggleGroup>
+        <ToggleGroup type="single" defaultValue="month" variant="soft" size="lg">
+          <ToggleGroupItem value="day">{copy.toggleGroup.day}</ToggleGroupItem>
+          <ToggleGroupItem value="week">{copy.toggleGroup.week}</ToggleGroupItem>
+          <ToggleGroupItem value="month">{copy.toggleGroup.month}</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    );
+  },
 };
 
 export const Vertical: Story = {
-  render: () => (
-    <ToggleGroup type="single" defaultValue="grid" orientation="vertical" aria-label="View mode">
-      <ToggleGroupItem value="grid">Grid</ToggleGroupItem>
-      <ToggleGroupItem value="list">List</ToggleGroupItem>
-      <ToggleGroupItem value="table">Table</ToggleGroupItem>
-    </ToggleGroup>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <ToggleGroup
+        type="single"
+        defaultValue="grid"
+        orientation="vertical"
+        aria-label={copy.toggleGroup.viewMode}
+      >
+        <ToggleGroupItem value="grid">{copy.toggleGroup.grid}</ToggleGroupItem>
+        <ToggleGroupItem value="list">{copy.toggleGroup.list}</ToggleGroupItem>
+        <ToggleGroupItem value="table">{copy.toggleGroup.table}</ToggleGroupItem>
+      </ToggleGroup>
+    );
+  },
 };
 
 export const Controlled: Story = {
   render: function ControlledStory() {
+    const copy = useStoryCopy();
     const [value, setValue] = useState('preview');
     return (
       <div style={{ display: 'grid', gap: 'var(--zy-spacing-3)', justifyItems: 'start' }}>
         <ToggleGroup type="single" value={value} onValueChange={(next) => next && setValue(next)}>
-          <ToggleGroupItem value="preview">Preview</ToggleGroupItem>
-          <ToggleGroupItem value="code">Code</ToggleGroupItem>
-          <ToggleGroupItem value="diff">Diff</ToggleGroupItem>
+          <ToggleGroupItem value="preview">{copy.toggleGroup.preview}</ToggleGroupItem>
+          <ToggleGroupItem value="code">{copy.toggleGroup.code}</ToggleGroupItem>
+          <ToggleGroupItem value="diff">{copy.toggleGroup.diff}</ToggleGroupItem>
         </ToggleGroup>
         <span
           style={{
@@ -85,7 +108,7 @@ export const Controlled: Story = {
             fontSize: 'var(--zy-font-size-sm)',
           }}
         >
-          Active: {value}
+          {copy.toggleGroup.active}: {value}
         </span>
       </div>
     );

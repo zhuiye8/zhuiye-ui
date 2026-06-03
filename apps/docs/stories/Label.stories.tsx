@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Label } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Label> = {
   title: 'Components/Label',
@@ -54,19 +55,22 @@ export const WithHtmlFor: Story = {
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <Label>Default label</Label>
-      <Label required>Required field</Label>
-      <Label description="Help text for this field">With description</Label>
-      <Label required description="This field is required.">
-        Required with description
-      </Label>
-      <Label error required>
-        Error state
-      </Label>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <Label>{copy.labelComp.defaultLabel}</Label>
+        <Label required>{copy.labelComp.requiredField}</Label>
+        <Label description={copy.labelComp.helpText}>{copy.labelComp.withDescription}</Label>
+        <Label required description={copy.labelComp.fieldRequired}>
+          {copy.labelComp.requiredWithDesc}
+        </Label>
+        <Label error required>
+          {copy.labelComp.errorState}
+        </Label>
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -74,23 +78,26 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-      }}
-    >
-      <Label>Default label</Label>
-      <Label required>Required field</Label>
-      <Label description="Help text">With description</Label>
-      <Label error>Error state</Label>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+        }}
+      >
+        <Label>{copy.labelComp.defaultLabel}</Label>
+        <Label required>{copy.labelComp.requiredField}</Label>
+        <Label description={copy.labelComp.helpTextShort}>{copy.labelComp.withDescription}</Label>
+        <Label error>{copy.labelComp.errorState}</Label>
+      </div>
+    );
+  },
 };

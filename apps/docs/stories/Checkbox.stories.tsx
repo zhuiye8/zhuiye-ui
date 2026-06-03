@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
@@ -22,16 +23,18 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <Checkbox label={useStoryCopy().checkbox.acceptTerms} />,
+};
 
 export const Checked: Story = {
-  args: { defaultChecked: true },
+  render: () => <Checkbox label={useStoryCopy().checkbox.acceptTerms} defaultChecked />,
 };
 
 export const WithDescription: Story = {
-  args: {
-    label: 'Email notifications',
-    description: 'Receive email updates about your account activity',
+  render: () => {
+    const c = useStoryCopy().checkbox;
+    return <Checkbox label={c.emailNotifications} description={c.emailUpdates} />;
   },
 };
 
@@ -44,38 +47,38 @@ export const DisabledChecked: Story = {
 };
 
 export const Indeterminate: Story = {
-  args: {
-    label: 'Select all',
-    indeterminate: true,
-  },
+  render: () => <Checkbox label={useStoryCopy().checkbox.selectAll} indeterminate />,
 };
 
 export const Invalid: Story = {
-  args: {
-    invalid: true,
-    errorMessage: 'You must accept the terms',
+  render: () => {
+    const c = useStoryCopy().checkbox;
+    return <Checkbox invalid errorMessage={c.mustAccept} />;
   },
 };
 
 export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-    label: 'I agree to the terms of service and privacy policy',
+  render: () => {
+    const c = useStoryCopy().checkbox;
+    return <Checkbox fullWidth label={c.agreeToTermsFull} />;
   },
   parameters: { layout: 'padded' },
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <Checkbox label="Default" />
-      <Checkbox label="Checked" defaultChecked />
-      <Checkbox label="Indeterminate" indeterminate />
-      <Checkbox label="Disabled" disabled />
-      <Checkbox label="Disabled checked" disabled defaultChecked />
-      <Checkbox label="Invalid" invalid errorMessage="This field is required" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().checkbox;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <Checkbox label={c.acceptTerms} />
+        <Checkbox label={c.checked} defaultChecked />
+        <Checkbox label={c.indeterminate} indeterminate />
+        <Checkbox label={c.acceptTerms} disabled />
+        <Checkbox label={c.disabledChecked} disabled defaultChecked />
+        <Checkbox label={c.acceptTerms} invalid errorMessage={c.thisFieldRequired} />
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -83,23 +86,26 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-      }}
-    >
-      <Checkbox label="Default" />
-      <Checkbox label="Checked" defaultChecked />
-      <Checkbox label="Indeterminate" indeterminate />
-      <Checkbox label="Invalid" invalid errorMessage="Error message" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().checkbox;
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+        }}
+      >
+        <Checkbox label={c.acceptTerms} />
+        <Checkbox label={c.checked} defaultChecked />
+        <Checkbox label={c.indeterminate} indeterminate />
+        <Checkbox label={c.acceptTerms} invalid errorMessage={c.errorMessage} />
+      </div>
+    );
+  },
 };

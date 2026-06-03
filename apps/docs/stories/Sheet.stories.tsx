@@ -11,6 +11,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Sheet> = {
   title: 'Components/Sheet',
@@ -22,9 +23,10 @@ export default meta;
 type Story = StoryObj<typeof Sheet>;
 
 function SettingsBody() {
+  const c = useStoryCopy().sheet;
   return (
     <div style={{ display: 'grid', gap: 'var(--zy-spacing-4)' }}>
-      {['Profile visibility', 'Billing contact', 'Security alerts'].map((label) => (
+      {[c.profileVisibility, c.billingContact, c.securityAlerts].map((label) => (
         <div
           key={label}
           style={{
@@ -51,7 +53,7 @@ function SettingsBody() {
               fontSize: 'var(--zy-font-size-sm)',
             }}
           >
-            Enabled
+            {c.enabled}
           </span>
         </div>
       ))}
@@ -62,30 +64,31 @@ function SettingsBody() {
 function SheetExample({
   side = 'right',
   size = 'md',
-  label = 'Open sheet',
+  label,
 }: {
   side?: 'top' | 'right' | 'bottom' | 'left';
   size?: 'sm' | 'md' | 'lg' | 'full';
   label?: string;
 }) {
+  const c = useStoryCopy().sheet;
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">{label}</Button>
+        <Button variant="outline">{label ?? c.openSheet}</Button>
       </SheetTrigger>
       <SheetContent side={side} size={size}>
         <SheetHeader>
-          <SheetTitle>Workspace settings</SheetTitle>
-          <SheetDescription>Update project defaults and notification preferences.</SheetDescription>
+          <SheetTitle>{c.workspaceSettings}</SheetTitle>
+          <SheetDescription>{c.updateDefaults}</SheetDescription>
         </SheetHeader>
         <SheetBody>
           <SettingsBody />
         </SheetBody>
         <SheetFooter>
           <SheetClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">{useStoryCopy().button.cancel}</Button>
           </SheetClose>
-          <Button>Save changes</Button>
+          <Button>{c.saveChanges}</Button>
         </SheetFooter>
       </SheetContent>
     </Sheet>
@@ -97,46 +100,56 @@ export const Default: Story = {
 };
 
 export const Sides: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--zy-spacing-3)' }}>
-      <SheetExample side="left" label="Left" />
-      <SheetExample side="right" label="Right" />
-      <SheetExample side="top" label="Top" />
-      <SheetExample side="bottom" label="Bottom" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().sheet;
+    return (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--zy-spacing-3)' }}>
+        <SheetExample side="left" label={c.left} />
+        <SheetExample side="right" label={c.right} />
+        <SheetExample side="top" label={c.top} />
+        <SheetExample side="bottom" label={c.bottom} />
+      </div>
+    );
+  },
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--zy-spacing-3)' }}>
-      <SheetExample size="sm" label="Small" />
-      <SheetExample size="md" label="Medium" />
-      <SheetExample size="lg" label="Large" />
-      <SheetExample size="full" label="Full" />
-    </div>
-  ),
+  render: () => {
+    const btn = useStoryCopy().button;
+    const c = useStoryCopy().sheet;
+    return (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--zy-spacing-3)' }}>
+        <SheetExample size="sm" label={btn.small} />
+        <SheetExample size="md" label={btn.medium} />
+        <SheetExample size="lg" label={btn.large} />
+        <SheetExample size="full" label={c.full} />
+      </div>
+    );
+  },
 };
 
 export const Open: Story = {
-  render: () => (
-    <Sheet defaultOpen>
-      <SheetContent side="right" size="md">
-        <SheetHeader>
-          <SheetTitle>Open sheet</SheetTitle>
-          <SheetDescription>Visible by default for visual review.</SheetDescription>
-        </SheetHeader>
-        <SheetBody>
-          <SettingsBody />
-        </SheetBody>
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button variant="outline">Close</Button>
-          </SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
-  ),
+  render: () => {
+    const c = useStoryCopy().sheet;
+    return (
+      <Sheet defaultOpen>
+        <SheetContent side="right" size="md">
+          <SheetHeader>
+            <SheetTitle>{c.openSheet}</SheetTitle>
+            <SheetDescription>{c.visibleByDefault}</SheetDescription>
+          </SheetHeader>
+          <SheetBody>
+            <SettingsBody />
+          </SheetBody>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button variant="outline">{useStoryCopy().button.close}</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -144,21 +157,24 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '240px',
-        padding: 'var(--zy-spacing-6)',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: 'var(--zy-radius-md)',
-      }}
-    >
-      <SheetExample label="Open dark sheet" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().sheet;
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '240px',
+          padding: 'var(--zy-spacing-6)',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: 'var(--zy-radius-md)',
+        }}
+      >
+        <SheetExample label={c.openDarkSheet} />
+      </div>
+    );
+  },
 };

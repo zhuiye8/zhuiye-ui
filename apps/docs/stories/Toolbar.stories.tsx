@@ -7,6 +7,7 @@ import {
   ToolbarToggleGroup,
   ToolbarToggleItem,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Toolbar> = {
   title: 'Components/Toolbar',
@@ -18,34 +19,43 @@ export default meta;
 type Story = StoryObj<typeof Toolbar>;
 
 function EditorToolbar({ variant = 'framed' }: { variant?: 'plain' | 'subtle' | 'framed' }) {
+  const copy = useStoryCopy();
   return (
-    <Toolbar aria-label="Editor tools" variant={variant}>
-      <ToolbarToggleGroup type="multiple" defaultValue={['bold']} aria-label="Text formatting">
-        <ToolbarToggleItem value="bold" aria-label="Bold">
+    <Toolbar aria-label={copy.toolbarComp.editorTools} variant={variant}>
+      <ToolbarToggleGroup
+        type="multiple"
+        defaultValue={['bold']}
+        aria-label={copy.toolbarComp.textFormatting}
+      >
+        <ToolbarToggleItem value="bold" aria-label={copy.toolbarComp.bold}>
           B
         </ToolbarToggleItem>
-        <ToolbarToggleItem value="italic" aria-label="Italic">
+        <ToolbarToggleItem value="italic" aria-label={copy.toolbarComp.italic}>
           I
         </ToolbarToggleItem>
-        <ToolbarToggleItem value="underline" aria-label="Underline">
+        <ToolbarToggleItem value="underline" aria-label={copy.toolbarComp.underline}>
           U
         </ToolbarToggleItem>
       </ToolbarToggleGroup>
       <ToolbarSeparator />
-      <ToolbarToggleGroup type="single" defaultValue="center" aria-label="Text alignment">
-        <ToolbarToggleItem value="left" aria-label="Align left">
+      <ToolbarToggleGroup
+        type="single"
+        defaultValue="center"
+        aria-label={copy.toolbarComp.textAlignment}
+      >
+        <ToolbarToggleItem value="left" aria-label={copy.toolbarComp.alignLeft}>
           L
         </ToolbarToggleItem>
-        <ToolbarToggleItem value="center" aria-label="Align center">
+        <ToolbarToggleItem value="center" aria-label={copy.toolbarComp.alignCenter}>
           C
         </ToolbarToggleItem>
-        <ToolbarToggleItem value="right" aria-label="Align right">
+        <ToolbarToggleItem value="right" aria-label={copy.toolbarComp.alignRight}>
           R
         </ToolbarToggleItem>
       </ToolbarToggleGroup>
       <ToolbarSeparator />
-      <ToolbarLink href="#history">History</ToolbarLink>
-      <ToolbarButton tone="primary">Publish</ToolbarButton>
+      <ToolbarLink href="#history">{copy.toolbarComp.history}</ToolbarLink>
+      <ToolbarButton tone="primary">{copy.toolbarComp.publish}</ToolbarButton>
     </Toolbar>
   );
 }
@@ -65,44 +75,58 @@ export const Variants: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'grid', gap: 'var(--zy-spacing-5)', justifyItems: 'start' }}>
-      {(['sm', 'md', 'lg'] as const).map((size) => (
-        <Toolbar key={size} aria-label={`${size} tools`} variant="framed" size={size}>
-          <ToolbarToggleGroup type="multiple" defaultValue={['bold']} aria-label="Format">
-            <ToolbarToggleItem value="bold" aria-label="Bold">
-              B
-            </ToolbarToggleItem>
-            <ToolbarToggleItem value="italic" aria-label="Italic">
-              I
-            </ToolbarToggleItem>
-          </ToolbarToggleGroup>
-          <ToolbarSeparator />
-          <ToolbarButton>Save</ToolbarButton>
-        </Toolbar>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'grid', gap: 'var(--zy-spacing-5)', justifyItems: 'start' }}>
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <Toolbar key={size} aria-label={`${size} tools`} variant="framed" size={size}>
+            <ToolbarToggleGroup
+              type="multiple"
+              defaultValue={['bold']}
+              aria-label={copy.toolbarComp.format}
+            >
+              <ToolbarToggleItem value="bold" aria-label={copy.toolbarComp.bold}>
+                B
+              </ToolbarToggleItem>
+              <ToolbarToggleItem value="italic" aria-label={copy.toolbarComp.italic}>
+                I
+              </ToolbarToggleItem>
+            </ToolbarToggleGroup>
+            <ToolbarSeparator />
+            <ToolbarButton>{copy.toolbarComp.save}</ToolbarButton>
+          </Toolbar>
+        ))}
+      </div>
+    );
+  },
 };
 
 export const Vertical: Story = {
-  render: () => (
-    <Toolbar aria-label="Canvas tools" variant="framed" orientation="vertical">
-      <ToolbarToggleGroup type="single" defaultValue="select" aria-label="Canvas mode">
-        <ToolbarToggleItem value="select" aria-label="Select">
-          S
-        </ToolbarToggleItem>
-        <ToolbarToggleItem value="pan" aria-label="Pan">
-          P
-        </ToolbarToggleItem>
-        <ToolbarToggleItem value="comment" aria-label="Comment">
-          C
-        </ToolbarToggleItem>
-      </ToolbarToggleGroup>
-      <ToolbarSeparator />
-      <ToolbarButton tone="danger">Clear</ToolbarButton>
-    </Toolbar>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Toolbar aria-label={copy.toolbarComp.canvasTools} variant="framed" orientation="vertical">
+        <ToolbarToggleGroup
+          type="single"
+          defaultValue="select"
+          aria-label={copy.toolbarComp.canvasMode}
+        >
+          <ToolbarToggleItem value="select" aria-label={copy.toolbarComp.select}>
+            S
+          </ToolbarToggleItem>
+          <ToolbarToggleItem value="pan" aria-label={copy.toolbarComp.pan}>
+            P
+          </ToolbarToggleItem>
+          <ToolbarToggleItem value="comment" aria-label={copy.toolbarComp.comment}>
+            C
+          </ToolbarToggleItem>
+        </ToolbarToggleGroup>
+        <ToolbarSeparator />
+        <ToolbarButton tone="danger">{copy.toolbarComp.clear}</ToolbarButton>
+      </Toolbar>
+    );
+  },
 };
 
 export const DarkTheme: Story = {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
@@ -24,30 +25,30 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: () => <Input placeholder={useStoryCopy().input.placeholder} size="md" />,
+};
 
 export const Small: Story = {
-  args: { size: 'sm' },
+  render: () => <Input placeholder={useStoryCopy().input.placeholder} size="sm" />,
 };
 
 export const Large: Story = {
-  args: { size: 'lg' },
+  render: () => <Input placeholder={useStoryCopy().input.placeholder} size="lg" />,
 };
 
 export const Invalid: Story = {
-  args: {
-    invalid: true,
-    errorMessage: 'This field is required.',
-    id: 'email',
-  },
+  render: () => (
+    <Input invalid errorMessage={useStoryCopy().input.errorMessage} id="email" size="md" />
+  ),
 };
 
 export const Disabled: Story = {
-  args: { disabled: true, value: 'Disabled value' },
+  render: () => <Input disabled value={useStoryCopy().input.disabledValue} size="md" />,
 };
 
 export const ReadOnly: Story = {
-  args: { readOnly: true, value: 'Read only value' },
+  render: () => <Input readOnly value={useStoryCopy().input.readOnlyValue} size="md" />,
 };
 
 export const FullWidth: Story = {
@@ -56,58 +57,73 @@ export const FullWidth: Story = {
 };
 
 export const WithLeftAdornment: Story = {
-  args: {
-    leftAdornment: <span style={{ color: 'var(--zy-muted-foreground)' }}>$</span>,
-    placeholder: '0.00',
-  },
+  render: () => (
+    <Input
+      leftAdornment={<span style={{ color: 'var(--zy-muted-foreground)' }}>$</span>}
+      placeholder="0.00"
+      size="md"
+    />
+  ),
 };
 
 export const WithRightAdornment: Story = {
-  args: {
-    rightAdornment: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <circle cx="11" cy="11" r="8" />
-        <path d="m21 21-4.35-4.35" />
-      </svg>
-    ),
-    placeholder: 'Search...',
-  },
+  render: () => (
+    <Input
+      rightAdornment={
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      }
+      placeholder={useStoryCopy().input.search}
+      size="md"
+    />
+  ),
 };
 
 export const WithBothAdornments: Story = {
-  args: {
-    leftAdornment: <span style={{ color: 'var(--zy-muted-foreground)' }}>@</span>,
-    placeholder: 'username',
-  },
+  render: () => (
+    <Input
+      leftAdornment={<span style={{ color: 'var(--zy-muted-foreground)' }}>@</span>}
+      placeholder={useStoryCopy().input.username}
+      size="md"
+    />
+  ),
 };
 
 export const AllSizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '300px' }}>
-      <Input size="sm" placeholder="Small" />
-      <Input size="md" placeholder="Medium" />
-      <Input size="lg" placeholder="Large" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().input;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '300px' }}>
+        <Input size="sm" placeholder={c.small} />
+        <Input size="md" placeholder={c.medium} />
+        <Input size="lg" placeholder={c.large} />
+      </div>
+    );
+  },
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '300px' }}>
-      <Input placeholder="Default" />
-      <Input placeholder="Disabled" disabled />
-      <Input placeholder="Read only" readOnly value="Read only" />
-      <Input placeholder="Invalid" invalid />
-      <Input placeholder="With error" id="err" errorMessage="Something went wrong" />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().input;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '300px' }}>
+        <Input placeholder={c.default} />
+        <Input placeholder={c.disabled} disabled />
+        <Input placeholder={c.readOnly} readOnly value={c.readOnly} />
+        <Input placeholder={c.invalid} invalid />
+        <Input placeholder={c.withError} id="err" errorMessage={c.somethingWentWrong} />
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -115,23 +131,26 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-        width: '300px',
-      }}
-    >
-      <Input placeholder="Default" />
-      <Input placeholder="Disabled" disabled />
-      <Input placeholder="Invalid" invalid />
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().input;
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+          width: '300px',
+        }}
+      >
+        <Input placeholder={c.default} />
+        <Input placeholder={c.disabled} disabled />
+        <Input placeholder={c.invalid} invalid />
+      </div>
+    );
+  },
 };

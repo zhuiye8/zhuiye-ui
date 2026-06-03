@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar, AvatarImage, AvatarFallback, AvatarGroup } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
@@ -34,12 +35,15 @@ export const Default: Story = {
 };
 
 export const WithFallback: Story = {
-  render: (args) => (
-    <Avatar {...args}>
-      <AvatarImage src="invalid-url" alt="User" />
-      <AvatarFallback>JD</AvatarFallback>
-    </Avatar>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy();
+    return (
+      <Avatar {...args}>
+        <AvatarImage src="invalid-url" alt={copy.avatar.user} />
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    );
+  },
   parameters: {
     docs: {
       description: {

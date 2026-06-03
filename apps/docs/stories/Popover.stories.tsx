@@ -14,6 +14,7 @@ import {
   Input,
   Select,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Popover> = {
   title: 'Components/Popover',
@@ -25,154 +26,166 @@ export default meta;
 type Story = StoryObj<typeof Popover>;
 
 export const Default: Story = {
-  render: () => (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button>Open Popover</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverHeader>
-          <PopoverTitle>Popover Title</PopoverTitle>
-          <PopoverDescription>
-            This is a compact popover with some helpful information.
-          </PopoverDescription>
-        </PopoverHeader>
-        <p
-          style={{
-            fontSize: 'var(--zy-font-size-sm)',
-            color: 'var(--zy-muted-foreground)',
-            margin: 0,
-          }}
-        >
-          You can put rich content inside a popover.
-        </p>
-        <PopoverFooter>
-          <PopoverClose asChild>
-            <Button size="sm" variant="outline">
-              Got it
-            </Button>
-          </PopoverClose>
-        </PopoverFooter>
-      </PopoverContent>
-    </Popover>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button>{copy.popoverComp.openPopover}</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverHeader>
+            <PopoverTitle>{copy.popoverComp.popoverTitle}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.popoverDesc}</PopoverDescription>
+          </PopoverHeader>
+          <p
+            style={{
+              fontSize: 'var(--zy-font-size-sm)',
+              color: 'var(--zy-muted-foreground)',
+              margin: 0,
+            }}
+          >
+            {copy.popoverComp.richContent}
+          </p>
+          <PopoverFooter>
+            <PopoverClose asChild>
+              <Button size="sm" variant="outline">
+                {copy.popoverComp.gotIt}
+              </Button>
+            </PopoverClose>
+          </PopoverFooter>
+        </PopoverContent>
+      </Popover>
+    );
+  },
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '12px' }}>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button size="sm">Small</Button>
-        </PopoverTrigger>
-        <PopoverContent size="sm">
-          <PopoverTitle>Small Popover</PopoverTitle>
-          <PopoverDescription>Compact content area.</PopoverDescription>
-        </PopoverContent>
-      </Popover>
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', gap: '12px' }}>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button size="sm">{copy.popoverComp.small}</Button>
+          </PopoverTrigger>
+          <PopoverContent size="sm">
+            <PopoverTitle>{copy.popoverComp.smallPopover}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.compactArea}</PopoverDescription>
+          </PopoverContent>
+        </Popover>
 
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button>Medium</Button>
-        </PopoverTrigger>
-        <PopoverContent size="md">
-          <PopoverTitle>Medium Popover</PopoverTitle>
-          <PopoverDescription>Default size for most use cases.</PopoverDescription>
-        </PopoverContent>
-      </Popover>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button>{copy.popoverComp.medium}</Button>
+          </PopoverTrigger>
+          <PopoverContent size="md">
+            <PopoverTitle>{copy.popoverComp.mediumPopover}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.defaultSize}</PopoverDescription>
+          </PopoverContent>
+        </Popover>
 
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button size="lg">Large</Button>
-        </PopoverTrigger>
-        <PopoverContent size="lg">
-          <PopoverTitle>Large Popover</PopoverTitle>
-          <PopoverDescription>Spacious popover for complex content and forms.</PopoverDescription>
-        </PopoverContent>
-      </Popover>
-    </div>
-  ),
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button size="lg">{copy.popoverComp.large}</Button>
+          </PopoverTrigger>
+          <PopoverContent size="lg">
+            <PopoverTitle>{copy.popoverComp.largePopover}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.spaciousDesc}</PopoverDescription>
+          </PopoverContent>
+        </Popover>
+      </div>
+    );
+  },
 };
 
 export const Placements: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', padding: '80px' }}>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline">Top</Button>
-        </PopoverTrigger>
-        <PopoverContent side="top">
-          <PopoverTitle>Top</PopoverTitle>
-          <PopoverDescription>Opens above the trigger.</PopoverDescription>
-        </PopoverContent>
-      </Popover>
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', padding: '80px' }}>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline">{copy.popoverComp.top}</Button>
+          </PopoverTrigger>
+          <PopoverContent side="top">
+            <PopoverTitle>{copy.popoverComp.top}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.opensAbove}</PopoverDescription>
+          </PopoverContent>
+        </Popover>
 
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline">Bottom</Button>
-        </PopoverTrigger>
-        <PopoverContent side="bottom">
-          <PopoverTitle>Bottom</PopoverTitle>
-          <PopoverDescription>Opens below the trigger.</PopoverDescription>
-        </PopoverContent>
-      </Popover>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline">{copy.popoverComp.bottom}</Button>
+          </PopoverTrigger>
+          <PopoverContent side="bottom">
+            <PopoverTitle>{copy.popoverComp.bottom}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.opensBelow}</PopoverDescription>
+          </PopoverContent>
+        </Popover>
 
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline">Left</Button>
-        </PopoverTrigger>
-        <PopoverContent side="left">
-          <PopoverTitle>Left</PopoverTitle>
-          <PopoverDescription>Opens to the left.</PopoverDescription>
-        </PopoverContent>
-      </Popover>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline">{copy.popoverComp.left}</Button>
+          </PopoverTrigger>
+          <PopoverContent side="left">
+            <PopoverTitle>{copy.popoverComp.left}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.opensLeft}</PopoverDescription>
+          </PopoverContent>
+        </Popover>
 
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline">Right</Button>
-        </PopoverTrigger>
-        <PopoverContent side="right">
-          <PopoverTitle>Right</PopoverTitle>
-          <PopoverDescription>Opens to the right.</PopoverDescription>
-        </PopoverContent>
-      </Popover>
-    </div>
-  ),
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline">{copy.popoverComp.right}</Button>
+          </PopoverTrigger>
+          <PopoverContent side="right">
+            <PopoverTitle>{copy.popoverComp.right}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.opensRight}</PopoverDescription>
+          </PopoverContent>
+        </Popover>
+      </div>
+    );
+  },
 };
 
 export const FormPopover: Story = {
   render: () => {
+    const copy = useStoryCopy();
     const categoryOptions = [
-      { value: 'design', label: 'Design' },
-      { value: 'engineering', label: 'Engineering' },
-      { value: 'marketing', label: 'Marketing' },
+      { value: 'design', label: copy.popoverComp.design },
+      { value: 'engineering', label: copy.popoverComp.engineering },
+      { value: 'marketing', label: copy.popoverComp.marketing },
     ];
 
     return (
       <Popover>
         <PopoverTrigger asChild>
-          <Button>Quick Add</Button>
+          <Button>{copy.popoverComp.quickAdd}</Button>
         </PopoverTrigger>
         <PopoverContent size="md">
           <PopoverHeader>
-            <PopoverTitle>Add Task</PopoverTitle>
-            <PopoverDescription>Create a new task quickly.</PopoverDescription>
+            <PopoverTitle>{copy.popoverComp.addTask}</PopoverTitle>
+            <PopoverDescription>{copy.popoverComp.createTask}</PopoverDescription>
           </PopoverHeader>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--zy-spacing-3)' }}>
-            <Field label="Task Name">
-              <Input placeholder="Enter task name" fullWidth />
+            <Field label={copy.popoverComp.taskName}>
+              <Input placeholder={copy.popoverComp.enterTaskName} fullWidth />
             </Field>
-            <Field label="Category">
-              <Select options={categoryOptions} placeholder="Select category" fullWidth />
+            <Field label={copy.popoverComp.category}>
+              <Select
+                options={categoryOptions}
+                placeholder={copy.popoverComp.selectCategory}
+                fullWidth
+              />
             </Field>
           </div>
           <PopoverFooter>
             <PopoverClose asChild>
               <Button size="sm" variant="outline">
-                Cancel
+                {copy.popoverComp.cancel}
               </Button>
             </PopoverClose>
-            <Button size="sm">Create</Button>
+            <Button size="sm">{copy.popoverComp.create}</Button>
           </PopoverFooter>
         </PopoverContent>
       </Popover>
@@ -182,6 +195,7 @@ export const FormPopover: Story = {
 
 export const Controlled: Story = {
   render: function ControlledStory() {
+    const copy = useStoryCopy();
     const [open, setOpen] = useState(false);
     return (
       <div
@@ -190,19 +204,19 @@ export const Controlled: Story = {
         <p style={{ fontSize: 'var(--zy-font-size-sm)', color: 'var(--zy-muted-foreground)' }}>
           Open: {String(open)}
         </p>
-        <Button onClick={() => setOpen(true)}>Open Programmatically</Button>
+        <Button onClick={() => setOpen(true)}>{copy.popoverComp.openProgrammatically}</Button>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button variant="outline">Trigger</Button>
           </PopoverTrigger>
           <PopoverContent>
             <PopoverHeader>
-              <PopoverTitle>Controlled Popover</PopoverTitle>
-              <PopoverDescription>This popover is controlled by external state.</PopoverDescription>
+              <PopoverTitle>{copy.popoverComp.controlledPopover}</PopoverTitle>
+              <PopoverDescription>{copy.popoverComp.controlledDesc}</PopoverDescription>
             </PopoverHeader>
             <PopoverFooter>
               <Button size="sm" variant="outline" onClick={() => setOpen(false)}>
-                Close
+                {copy.popoverComp.close}
               </Button>
             </PopoverFooter>
           </PopoverContent>
@@ -213,17 +227,20 @@ export const Controlled: Story = {
 };
 
 export const WithoutArrow: Story = {
-  render: () => (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button>No Arrow</Button>
-      </PopoverTrigger>
-      <PopoverContent showArrow={false}>
-        <PopoverTitle>No Arrow</PopoverTitle>
-        <PopoverDescription>This popover has no arrow indicator.</PopoverDescription>
-      </PopoverContent>
-    </Popover>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button>{copy.popoverComp.noArrow}</Button>
+        </PopoverTrigger>
+        <PopoverContent showArrow={false}>
+          <PopoverTitle>{copy.popoverComp.noArrow}</PopoverTitle>
+          <PopoverDescription>{copy.popoverComp.noArrowDesc}</PopoverDescription>
+        </PopoverContent>
+      </Popover>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -231,43 +248,46 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: 'var(--zy-radius-md)',
-      }}
-    >
-      <Popover defaultOpen>
-        <PopoverTrigger asChild>
-          <Button>Dark Popover</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverHeader>
-            <PopoverTitle>Dark Theme</PopoverTitle>
-            <PopoverDescription>This popover renders with dark theme tokens.</PopoverDescription>
-          </PopoverHeader>
-          <p
-            style={{
-              fontSize: 'var(--zy-font-size-sm)',
-              color: 'var(--zy-muted-foreground)',
-              margin: 0,
-            }}
-          >
-            Dark mode styling uses the same CSS variables with different values.
-          </p>
-          <PopoverFooter>
-            <PopoverClose asChild>
-              <Button size="sm" variant="outline">
-                Close
-              </Button>
-            </PopoverClose>
-          </PopoverFooter>
-        </PopoverContent>
-      </Popover>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: 'var(--zy-radius-md)',
+        }}
+      >
+        <Popover defaultOpen>
+          <PopoverTrigger asChild>
+            <Button>{copy.popoverComp.darkPopover}</Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>
+              <PopoverTitle>{copy.popoverComp.darkTheme}</PopoverTitle>
+              <PopoverDescription>{copy.popoverComp.darkThemeDesc}</PopoverDescription>
+            </PopoverHeader>
+            <p
+              style={{
+                fontSize: 'var(--zy-font-size-sm)',
+                color: 'var(--zy-muted-foreground)',
+                margin: 0,
+              }}
+            >
+              {copy.popoverComp.darkModeDesc}
+            </p>
+            <PopoverFooter>
+              <PopoverClose asChild>
+                <Button size="sm" variant="outline">
+                  {copy.popoverComp.close}
+                </Button>
+              </PopoverClose>
+            </PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      </div>
+    );
+  },
 };

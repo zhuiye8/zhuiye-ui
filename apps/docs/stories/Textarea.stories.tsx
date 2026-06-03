@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Textarea } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Textarea> = {
   title: 'Components/Textarea',
@@ -35,19 +36,24 @@ export const BothResize: Story = {
 };
 
 export const Invalid: Story = {
-  args: {
-    invalid: true,
-    errorMessage: 'This field is required.',
-    id: 'message',
+  render: () => {
+    const copy = useStoryCopy();
+    return <Textarea invalid errorMessage={copy.textarea.fieldRequired} id="message" />;
   },
 };
 
 export const Disabled: Story = {
-  args: { disabled: true, value: 'Disabled content' },
+  render: () => {
+    const copy = useStoryCopy();
+    return <Textarea disabled value={copy.textarea.disabledContent} />;
+  },
 };
 
 export const ReadOnly: Story = {
-  args: { readOnly: true, value: 'Read only content' },
+  render: () => {
+    const copy = useStoryCopy();
+    return <Textarea readOnly value={copy.textarea.readOnlyContent} />;
+  },
 };
 
 export const FullWidth: Story = {
@@ -56,15 +62,22 @@ export const FullWidth: Story = {
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '400px' }}>
-      <Textarea placeholder="Default" />
-      <Textarea placeholder="Disabled" disabled />
-      <Textarea placeholder="Read only" readOnly value="Read only" />
-      <Textarea placeholder="Invalid" invalid />
-      <Textarea placeholder="With error" id="err" errorMessage="Something went wrong" />
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '400px' }}>
+        <Textarea placeholder={copy.textarea.default} />
+        <Textarea placeholder={copy.textarea.disabled} disabled />
+        <Textarea placeholder={copy.textarea.readOnly} readOnly value={copy.textarea.readOnly} />
+        <Textarea placeholder={copy.textarea.invalid} />
+        <Textarea
+          placeholder={copy.textarea.withError}
+          id="err"
+          errorMessage={copy.textarea.somethingWrong}
+        />
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -72,23 +85,26 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-        width: '400px',
-      }}
-    >
-      <Textarea placeholder="Default" />
-      <Textarea placeholder="Disabled" disabled />
-      <Textarea placeholder="Invalid" invalid />
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+          width: '400px',
+        }}
+      >
+        <Textarea placeholder={copy.textarea.default} />
+        <Textarea placeholder={copy.textarea.disabled} disabled />
+        <Textarea placeholder={copy.textarea.invalid} invalid />
+      </div>
+    );
+  },
 };

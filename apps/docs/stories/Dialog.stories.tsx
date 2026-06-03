@@ -15,6 +15,7 @@ import {
   Textarea,
   Select,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Dialog> = {
   title: 'Components/Dialog',
@@ -29,123 +30,129 @@ export default meta;
 type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
-  render: () => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Edit Profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <p style={{ fontSize: 'var(--zy-font-size-sm)', color: 'var(--zy-muted-foreground)' }}>
-          This is the dialog body content. You can put anything here.
-        </p>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DialogClose>
-          <Button>Save Changes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
+  render: () => {
+    const c = useStoryCopy().dialog;
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>{c.openDialog}</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{c.editProfile}</DialogTitle>
+            <DialogDescription>{c.editProfileDesc}</DialogDescription>
+          </DialogHeader>
+          <p style={{ fontSize: 'var(--zy-font-size-sm)', color: 'var(--zy-muted-foreground)' }}>
+            {c.bodyContent}
+          </p>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">{useStoryCopy().button.cancel}</Button>
+            </DialogClose>
+            <Button>{c.saveChanges}</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '12px' }}>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button size="sm">Small</Button>
-        </DialogTrigger>
-        <DialogContent size="sm">
-          <DialogHeader>
-            <DialogTitle>Small Dialog</DialogTitle>
-            <DialogDescription>A compact dialog for simple confirmations.</DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Close</Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+  render: () => {
+    const c = useStoryCopy().dialog;
+    const btn = useStoryCopy().button;
+    return (
+      <div style={{ display: 'flex', gap: '12px' }}>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button size="sm">{btn.small}</Button>
+          </DialogTrigger>
+          <DialogContent size="sm">
+            <DialogHeader>
+              <DialogTitle>{c.smallDialog}</DialogTitle>
+              <DialogDescription>{c.smallDialogDesc}</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">{useStoryCopy().button.close}</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button>Medium</Button>
-        </DialogTrigger>
-        <DialogContent size="md">
-          <DialogHeader>
-            <DialogTitle>Medium Dialog</DialogTitle>
-            <DialogDescription>The default dialog size for most use cases.</DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Close</Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>{btn.medium}</Button>
+          </DialogTrigger>
+          <DialogContent size="md">
+            <DialogHeader>
+              <DialogTitle>{c.mediumDialog}</DialogTitle>
+              <DialogDescription>{c.mediumDialogDesc}</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">{useStoryCopy().button.close}</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button size="lg">Large</Button>
-        </DialogTrigger>
-        <DialogContent size="lg">
-          <DialogHeader>
-            <DialogTitle>Large Dialog</DialogTitle>
-            <DialogDescription>A spacious dialog for complex forms and content.</DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Close</Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </div>
-  ),
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button size="lg">{btn.large}</Button>
+          </DialogTrigger>
+          <DialogContent size="lg">
+            <DialogHeader>
+              <DialogTitle>{c.largeDialog}</DialogTitle>
+              <DialogDescription>{c.largeDialogDesc}</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">{useStoryCopy().button.close}</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  },
 };
 
 export const FormDialog: Story = {
   render: () => {
+    const c = useStoryCopy().dialog;
     const fruitOptions = [
-      { value: 'apple', label: 'Apple' },
-      { value: 'banana', label: 'Banana' },
-      { value: 'cherry', label: 'Cherry' },
+      { value: 'apple', label: useStoryCopy().fruits.apple },
+      { value: 'banana', label: useStoryCopy().fruits.banana },
+      { value: 'cherry', label: useStoryCopy().fruits.cherry },
     ];
 
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Create Project</Button>
+          <Button>{c.createProject}</Button>
         </DialogTrigger>
         <DialogContent size="md">
           <DialogHeader>
-            <DialogTitle>Create New Project</DialogTitle>
-            <DialogDescription>Fill out the form below to create a new project.</DialogDescription>
+            <DialogTitle>{c.createNewProject}</DialogTitle>
+            <DialogDescription>{c.createProjectDesc}</DialogDescription>
           </DialogHeader>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--zy-spacing-4)' }}>
-            <Field label="Project Name">
-              <Input placeholder="My awesome project" fullWidth />
+            <Field label={c.projectName}>
+              <Input placeholder={c.myAwesomeProject} fullWidth />
             </Field>
-            <Field label="Category">
-              <Select options={fruitOptions} placeholder="Select a category" fullWidth />
+            <Field label={c.category}>
+              <Select options={fruitOptions} placeholder={c.selectCategory} fullWidth />
             </Field>
-            <Field label="Description">
-              <Textarea placeholder="Describe your project..." fullWidth />
+            <Field label={c.description}>
+              <Textarea placeholder={c.describeProject} fullWidth />
             </Field>
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">{useStoryCopy().button.cancel}</Button>
             </DialogClose>
-            <Button>Create</Button>
+            <Button>{c.create}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -156,6 +163,7 @@ export const FormDialog: Story = {
 export const Controlled: Story = {
   render: function ControlledStory() {
     const [open, setOpen] = useState(false);
+    const c = useStoryCopy().dialog;
     return (
       <div
         style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}
@@ -163,16 +171,16 @@ export const Controlled: Story = {
         <p style={{ fontSize: 'var(--zy-font-size-sm)', color: 'var(--zy-muted-foreground)' }}>
           Open: {String(open)}
         </p>
-        <Button onClick={() => setOpen(true)}>Open Programmatically</Button>
+        <Button onClick={() => setOpen(true)}>{c.openProgrammatically}</Button>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Controlled Dialog</DialogTitle>
-              <DialogDescription>This dialog is controlled by external state.</DialogDescription>
+              <DialogTitle>{c.controlledDialog}</DialogTitle>
+              <DialogDescription>{c.controlledDesc}</DialogDescription>
             </DialogHeader>
             <DialogFooter>
               <Button variant="outline" onClick={() => setOpen(false)}>
-                Close
+                {useStoryCopy().button.close}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -183,52 +191,54 @@ export const Controlled: Story = {
 };
 
 export const WithoutCloseButton: Story = {
-  render: () => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open</Button>
-      </DialogTrigger>
-      <DialogContent showCloseButton={false}>
-        <DialogHeader>
-          <DialogTitle>Important Notice</DialogTitle>
-          <DialogDescription>
-            This dialog has no close button. You must take an action.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Decline</Button>
-          </DialogClose>
-          <DialogClose asChild>
-            <Button>Accept</Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
+  render: () => {
+    const c = useStoryCopy().dialog;
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>{c.open}</Button>
+        </DialogTrigger>
+        <DialogContent showCloseButton={false}>
+          <DialogHeader>
+            <DialogTitle>{c.importantNotice}</DialogTitle>
+            <DialogDescription>{c.noCloseDesc}</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">{c.decline}</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button>{c.accept}</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
 };
 
 export const NonModal: Story = {
-  render: () => (
-    <Dialog modal={false}>
-      <DialogTrigger asChild>
-        <Button variant="outline">Non-Modal Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Non-Modal Dialog</DialogTitle>
-          <DialogDescription>
-            This dialog is non-modal. You can interact with the page behind it.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Close</Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
+  render: () => {
+    const c = useStoryCopy().dialog;
+    return (
+      <Dialog modal={false}>
+        <DialogTrigger asChild>
+          <Button variant="outline">{c.nonModalDialog}</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{c.nonModalDialog}</DialogTitle>
+            <DialogDescription>{c.nonModalDesc}</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">{useStoryCopy().button.close}</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -236,38 +246,39 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: 'var(--zy-radius-md)',
-      }}
-    >
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button>Open Dark Dialog</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Dark Theme Dialog</DialogTitle>
-            <DialogDescription>
-              This dialog renders with dark theme tokens applied.
-            </DialogDescription>
-          </DialogHeader>
-          <p style={{ fontSize: 'var(--zy-font-size-sm)', color: 'var(--zy-muted-foreground)' }}>
-            Dark mode styling uses the same CSS variables with different values.
-          </p>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-            <Button>Confirm</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().dialog;
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: 'var(--zy-radius-md)',
+        }}
+      >
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>{c.openDarkDialog}</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{c.darkThemeDialog}</DialogTitle>
+              <DialogDescription>{c.darkThemeDialogDesc}</DialogDescription>
+            </DialogHeader>
+            <p style={{ fontSize: 'var(--zy-font-size-sm)', color: 'var(--zy-muted-foreground)' }}>
+              {c.darkThemeBody}
+            </p>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">{useStoryCopy().button.cancel}</Button>
+              </DialogClose>
+              <Button>{c.confirm}</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  },
 };

@@ -15,6 +15,7 @@ import {
   ContextMenuSubContent,
   ContextMenuShortcut,
 } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof ContextMenu> = {
   title: 'Components/ContextMenu',
@@ -26,50 +27,54 @@ export default meta;
 type Story = StoryObj<typeof ContextMenu>;
 
 const CanvasTarget = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'>>(
-  ({ style, ...rest }, ref) => (
-    <div
-      ref={ref}
-      style={{
-        display: 'grid',
-        gap: 'var(--zy-spacing-3)',
-        width: 'min(420px, calc(100vw - var(--zy-spacing-8)))',
-        padding: 'var(--zy-spacing-6)',
-        border: '1px solid var(--zy-border)',
-        borderRadius: 'var(--zy-radius-md)',
-        backgroundColor: 'var(--zy-surface)',
-        ...style,
-      }}
-      {...rest}
-    >
-      <strong>Frame 1200</strong>
-      <span style={{ color: 'var(--zy-muted-foreground)', fontSize: 'var(--zy-font-size-sm)' }}>
-        Header group, navigation, and primary action cluster.
-      </span>
-    </div>
-  ),
+  ({ style, ...rest }, ref) => {
+    const c = useStoryCopy().contextMenu;
+    return (
+      <div
+        ref={ref}
+        style={{
+          display: 'grid',
+          gap: 'var(--zy-spacing-3)',
+          width: 'min(420px, calc(100vw - var(--zy-spacing-8)))',
+          padding: 'var(--zy-spacing-6)',
+          border: '1px solid var(--zy-border)',
+          borderRadius: 'var(--zy-radius-md)',
+          backgroundColor: 'var(--zy-surface)',
+          ...style,
+        }}
+        {...rest}
+      >
+        <strong>{c.frameTitle}</strong>
+        <span style={{ color: 'var(--zy-muted-foreground)', fontSize: 'var(--zy-font-size-sm)' }}>
+          {c.frameDesc}
+        </span>
+      </div>
+    );
+  },
 );
 CanvasTarget.displayName = 'CanvasTarget';
 
 function LayerMenu() {
+  const c = useStoryCopy().contextMenu;
   return (
     <ContextMenuContent>
-      <ContextMenuLabel>Layer</ContextMenuLabel>
+      <ContextMenuLabel>{c.layer}</ContextMenuLabel>
       <ContextMenuItem>
-        Rename
+        {c.rename}
         <ContextMenuShortcut>F2</ContextMenuShortcut>
       </ContextMenuItem>
-      <ContextMenuItem>Duplicate</ContextMenuItem>
+      <ContextMenuItem>{c.duplicate}</ContextMenuItem>
       <ContextMenuSub>
-        <ContextMenuSubTrigger>Arrange</ContextMenuSubTrigger>
+        <ContextMenuSubTrigger>{c.arrange}</ContextMenuSubTrigger>
         <ContextMenuSubContent>
-          <ContextMenuItem>Bring forward</ContextMenuItem>
-          <ContextMenuItem>Send backward</ContextMenuItem>
+          <ContextMenuItem>{c.bringForward}</ContextMenuItem>
+          <ContextMenuItem>{c.sendBackward}</ContextMenuItem>
         </ContextMenuSubContent>
       </ContextMenuSub>
       <ContextMenuSeparator />
-      <ContextMenuCheckboxItem checked>Show outlines</ContextMenuCheckboxItem>
+      <ContextMenuCheckboxItem checked>{c.showOutlines}</ContextMenuCheckboxItem>
       <ContextMenuSeparator />
-      <ContextMenuItem tone="danger">Delete</ContextMenuItem>
+      <ContextMenuItem tone="danger">{c.delete}</ContextMenuItem>
     </ContextMenuContent>
   );
 }
@@ -86,21 +91,24 @@ export const Default: Story = {
 };
 
 export const RadioItems: Story = {
-  render: () => (
-    <ContextMenu>
-      <ContextMenuTrigger asChild>
-        <CanvasTarget />
-      </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuLabel>Zoom</ContextMenuLabel>
-        <ContextMenuRadioGroup value="fit">
-          <ContextMenuRadioItem value="fit">Fit to screen</ContextMenuRadioItem>
-          <ContextMenuRadioItem value="actual">Actual size</ContextMenuRadioItem>
-          <ContextMenuRadioItem value="fill">Fill width</ContextMenuRadioItem>
-        </ContextMenuRadioGroup>
-      </ContextMenuContent>
-    </ContextMenu>
-  ),
+  render: () => {
+    const c = useStoryCopy().contextMenu;
+    return (
+      <ContextMenu>
+        <ContextMenuTrigger asChild>
+          <CanvasTarget />
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuLabel>{c.zoom}</ContextMenuLabel>
+          <ContextMenuRadioGroup value="fit">
+            <ContextMenuRadioItem value="fit">{c.fitToScreen}</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="actual">{c.actualSize}</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="fill">{c.fillWidth}</ContextMenuRadioItem>
+          </ContextMenuRadioGroup>
+        </ContextMenuContent>
+      </ContextMenu>
+    );
+  },
 };
 
 export const DarkTheme: Story = {

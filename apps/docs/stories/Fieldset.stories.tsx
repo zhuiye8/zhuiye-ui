@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fieldset, Radio, RadioGroup } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Fieldset> = {
   title: 'Components/Fieldset',
@@ -36,11 +37,37 @@ export const Required: Story = {
 };
 
 export const WithDescription: Story = {
-  args: { description: 'Choose how you want to be notified.' },
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Fieldset legend={copy.fieldset.notificationPrefs} description={copy.fieldset.chooseNotified}>
+        <RadioGroup defaultValue="all" name="notifications">
+          <Radio value="all" label={copy.fieldset.allNotifications} />
+          <Radio value="important" label={copy.fieldset.importantOnly} />
+          <Radio value="none" label={copy.fieldset.none} />
+        </RadioGroup>
+      </Fieldset>
+    );
+  },
 };
 
 export const WithError: Story = {
-  args: { errorMessage: 'Please select an option.', invalid: true },
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Fieldset
+        legend={copy.fieldset.notificationPrefs}
+        errorMessage={copy.fieldset.selectOption}
+        invalid
+      >
+        <RadioGroup defaultValue="" name="notifications">
+          <Radio value="all" label={copy.fieldset.allNotifications} />
+          <Radio value="important" label={copy.fieldset.importantOnly} />
+          <Radio value="none" label={copy.fieldset.none} />
+        </RadioGroup>
+      </Fieldset>
+    );
+  },
 };
 
 export const Disabled: Story = {
@@ -48,84 +75,101 @@ export const Disabled: Story = {
 };
 
 export const Horizontal: Story = {
-  args: {
-    legend: 'Pick one',
-    orientation: 'horizontal',
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <Fieldset legend={copy.fieldset.pickOne} orientation="horizontal">
+        <RadioGroup defaultValue="a" name="horizontal">
+          <Radio value="a" label={copy.fieldset.optionA} />
+          <Radio value="b" label={copy.fieldset.optionB} />
+        </RadioGroup>
+      </Fieldset>
+    );
   },
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '360px' }}>
-      <Fieldset legend="Default group">
-        <RadioGroup defaultValue="a" name="default">
-          <Radio value="a" label="Option A" />
-          <Radio value="b" label="Option B" />
-        </RadioGroup>
-      </Fieldset>
-      <Fieldset legend="Required group" required>
-        <RadioGroup defaultValue="x" name="required">
-          <Radio value="x" label="Option X" />
-          <Radio value="y" label="Option Y" />
-        </RadioGroup>
-      </Fieldset>
-      <Fieldset legend="With description" description="Pick your preference.">
-        <RadioGroup defaultValue="c" name="desc">
-          <Radio value="c" label="Option C" />
-          <Radio value="d" label="Option D" />
-        </RadioGroup>
-      </Fieldset>
-      <Fieldset legend="Error group" invalid errorMessage="Selection required.">
-        <RadioGroup defaultValue="" name="error">
-          <Radio value="e" label="Option E" />
-          <Radio value="f" label="Option F" />
-        </RadioGroup>
-      </Fieldset>
-      <Fieldset legend="Disabled group" disabled>
-        <RadioGroup defaultValue="g" name="disabled">
-          <Radio value="g" label="Option G" />
-          <Radio value="h" label="Option H" />
-        </RadioGroup>
-      </Fieldset>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '360px' }}>
+        <Fieldset legend={copy.fieldset.defaultGroup}>
+          <RadioGroup defaultValue="a" name="default">
+            <Radio value="a" label={copy.fieldset.optionA} />
+            <Radio value="b" label={copy.fieldset.optionB} />
+          </RadioGroup>
+        </Fieldset>
+        <Fieldset legend={copy.fieldset.requiredGroup} required>
+          <RadioGroup defaultValue="x" name="required">
+            <Radio value="x" label={copy.fieldset.optionX} />
+            <Radio value="y" label={copy.fieldset.optionY} />
+          </RadioGroup>
+        </Fieldset>
+        <Fieldset legend={copy.fieldset.withDescription} description={copy.fieldset.pickPreference}>
+          <RadioGroup defaultValue="c" name="desc">
+            <Radio value="c" label={copy.fieldset.optionC} />
+            <Radio value="d" label={copy.fieldset.optionD} />
+          </RadioGroup>
+        </Fieldset>
+        <Fieldset
+          legend={copy.fieldset.errorGroup}
+          invalid
+          errorMessage={copy.fieldset.selectionRequired}
+        >
+          <RadioGroup defaultValue="" name="error">
+            <Radio value="e" label={copy.fieldset.optionE} />
+            <Radio value="f" label={copy.fieldset.optionF} />
+          </RadioGroup>
+        </Fieldset>
+        <Fieldset legend={copy.fieldset.disabledGroup} disabled>
+          <RadioGroup defaultValue="g" name="disabled">
+            <Radio value="g" label={copy.fieldset.optionG} />
+            <Radio value="h" label={copy.fieldset.optionH} />
+          </RadioGroup>
+        </Fieldset>
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
   parameters: { backgrounds: { disable: true } },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: 'var(--zy-radius-md)',
-        width: '360px',
-      }}
-    >
-      <Fieldset legend="Default group">
-        <RadioGroup defaultValue="a" name="dk-default">
-          <Radio value="a" label="Option A" />
-          <Radio value="b" label="Option B" />
-        </RadioGroup>
-      </Fieldset>
-      <Fieldset legend="Required group" required>
-        <RadioGroup defaultValue="x" name="dk-req">
-          <Radio value="x" label="Option X" />
-          <Radio value="y" label="Option Y" />
-        </RadioGroup>
-      </Fieldset>
-      <Fieldset legend="Error group" invalid errorMessage="Select one.">
-        <RadioGroup defaultValue="" name="dk-err">
-          <Radio value="e" label="Option E" />
-          <Radio value="f" label="Option F" />
-        </RadioGroup>
-      </Fieldset>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: 'var(--zy-radius-md)',
+          width: '360px',
+        }}
+      >
+        <Fieldset legend={copy.fieldset.defaultGroup}>
+          <RadioGroup defaultValue="a" name="dk-default">
+            <Radio value="a" label={copy.fieldset.optionA} />
+            <Radio value="b" label={copy.fieldset.optionB} />
+          </RadioGroup>
+        </Fieldset>
+        <Fieldset legend={copy.fieldset.requiredGroup} required>
+          <RadioGroup defaultValue="x" name="dk-req">
+            <Radio value="x" label={copy.fieldset.optionX} />
+            <Radio value="y" label={copy.fieldset.optionY} />
+          </RadioGroup>
+        </Fieldset>
+        <Fieldset legend={copy.fieldset.errorGroup} invalid errorMessage={copy.fieldset.selectOne}>
+          <RadioGroup defaultValue="" name="dk-err">
+            <Radio value="e" label={copy.fieldset.optionE} />
+            <Radio value="f" label={copy.fieldset.optionF} />
+          </RadioGroup>
+        </Fieldset>
+      </div>
+    );
+  },
 };

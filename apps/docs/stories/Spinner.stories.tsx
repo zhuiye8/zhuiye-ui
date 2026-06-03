@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Spinner } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Spinner> = {
   title: 'Primitives/Spinner',
@@ -73,7 +74,10 @@ export const AllSizes: Story = {
 };
 
 export const WithCustomLabel: Story = {
-  args: { label: 'Fetching data...' },
+  render: () => {
+    const copy = useStoryCopy();
+    return <Spinner label={copy.spinnerComp.fetchingData} />;
+  },
   parameters: {
     docs: {
       description: {

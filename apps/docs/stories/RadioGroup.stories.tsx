@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { RadioGroup, Radio } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof RadioGroup> = {
   title: 'Components/RadioGroup',
@@ -27,49 +28,73 @@ export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
 export const Default: Story = {
-  render: (args) => (
-    <RadioGroup {...args}>
-      <Radio value="free" label="Free" />
-      <Radio value="pro" label="Pro" />
-      <Radio value="enterprise" label="Enterprise" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy();
+    return (
+      <RadioGroup {...args}>
+        <Radio value="free" label={copy.radioGroup.free} />
+        <Radio value="pro" label={copy.radioGroup.pro} />
+        <Radio value="enterprise" label={copy.radioGroup.enterprise} />
+      </RadioGroup>
+    );
+  },
 };
 
 export const WithDescription: Story = {
   args: {
     description: 'Choose the plan that works best for you',
   },
-  render: (args) => (
-    <RadioGroup {...args}>
-      <Radio value="free" label="Free" description="Basic features for individuals" />
-      <Radio value="pro" label="Pro" description="Advanced features for professionals" />
-      <Radio value="enterprise" label="Enterprise" description="Custom solutions for teams" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy();
+    return (
+      <RadioGroup {...args}>
+        <Radio
+          value="free"
+          label={copy.radioGroup.free}
+          description={copy.radioGroup.basicFeatures}
+        />
+        <Radio
+          value="pro"
+          label={copy.radioGroup.pro}
+          description={copy.radioGroup.advancedFeatures}
+        />
+        <Radio
+          value="enterprise"
+          label={copy.radioGroup.enterprise}
+          description={copy.radioGroup.customSolutions}
+        />
+      </RadioGroup>
+    );
+  },
 };
 
 export const Horizontal: Story = {
   args: {
     orientation: 'horizontal',
   },
-  render: (args) => (
-    <RadioGroup {...args}>
-      <Radio value="sm" label="Small" />
-      <Radio value="md" label="Medium" />
-      <Radio value="lg" label="Large" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy();
+    return (
+      <RadioGroup {...args}>
+        <Radio value="sm" label={copy.radioGroup.small} />
+        <Radio value="md" label={copy.radioGroup.medium} />
+        <Radio value="lg" label={copy.radioGroup.large} />
+      </RadioGroup>
+    );
+  },
 };
 
 export const Disabled: Story = {
   args: { disabled: true },
-  render: (args) => (
-    <RadioGroup {...args}>
-      <Radio value="a" label="Option A" />
-      <Radio value="b" label="Option B" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy();
+    return (
+      <RadioGroup {...args}>
+        <Radio value="a" label={copy.radioGroup.optionA} />
+        <Radio value="b" label={copy.radioGroup.optionB} />
+      </RadioGroup>
+    );
+  },
 };
 
 export const Invalid: Story = {
@@ -77,22 +102,26 @@ export const Invalid: Story = {
     invalid: true,
     errorMessage: 'Please select an option',
   },
-  render: (args) => (
-    <RadioGroup {...args}>
-      <Radio value="a" label="Option A" />
-      <Radio value="b" label="Option B" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy();
+    return (
+      <RadioGroup {...args}>
+        <Radio value="a" label={copy.radioGroup.optionA} />
+        <Radio value="b" label={copy.radioGroup.optionB} />
+      </RadioGroup>
+    );
+  },
 };
 
 export const Controlled: Story = {
   render: () => {
+    const copy = useStoryCopy();
     const [value, setValue] = React.useState('pro');
     return (
-      <RadioGroup label="Plan" value={value} onValueChange={setValue}>
-        <Radio value="free" label="Free" />
-        <Radio value="pro" label="Pro" />
-        <Radio value="enterprise" label="Enterprise" />
+      <RadioGroup label={copy.radioGroup.plan} value={value} onValueChange={setValue}>
+        <Radio value="free" label={copy.radioGroup.free} />
+        <Radio value="pro" label={copy.radioGroup.pro} />
+        <Radio value="enterprise" label={copy.radioGroup.enterprise} />
       </RadioGroup>
     );
   },
@@ -100,37 +129,43 @@ export const Controlled: Story = {
 
 export const FullWidth: Story = {
   args: { fullWidth: true },
-  render: (args) => (
-    <RadioGroup {...args}>
-      <Radio value="a" label="Option A" />
-      <Radio value="b" label="Option B" />
-      <Radio value="c" label="Option C" />
-    </RadioGroup>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy();
+    return (
+      <RadioGroup {...args}>
+        <Radio value="a" label={copy.radioGroup.optionA} />
+        <Radio value="b" label={copy.radioGroup.optionB} />
+        <Radio value="c" label={copy.radioGroup.optionC} />
+      </RadioGroup>
+    );
+  },
   parameters: { layout: 'padded' },
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <RadioGroup label="Default">
-        <Radio value="a" label="Option A" />
-        <Radio value="b" label="Option B" />
-      </RadioGroup>
-      <RadioGroup label="With default value" defaultValue="b">
-        <Radio value="a" label="Option A" />
-        <Radio value="b" label="Option B" />
-      </RadioGroup>
-      <RadioGroup label="Disabled" disabled>
-        <Radio value="a" label="Option A" />
-        <Radio value="b" label="Option B" />
-      </RadioGroup>
-      <RadioGroup label="Invalid" invalid errorMessage="Required">
-        <Radio value="a" label="Option A" />
-        <Radio value="b" label="Option B" />
-      </RadioGroup>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <RadioGroup label={copy.radioGroup.defaultValue}>
+          <Radio value="a" label={copy.radioGroup.optionA} />
+          <Radio value="b" label={copy.radioGroup.optionB} />
+        </RadioGroup>
+        <RadioGroup label={copy.radioGroup.withDefaultValue} defaultValue="b">
+          <Radio value="a" label={copy.radioGroup.optionA} />
+          <Radio value="b" label={copy.radioGroup.optionB} />
+        </RadioGroup>
+        <RadioGroup label={copy.radioGroup.disabled} disabled>
+          <Radio value="a" label={copy.radioGroup.optionA} />
+          <Radio value="b" label={copy.radioGroup.optionB} />
+        </RadioGroup>
+        <RadioGroup label={copy.radioGroup.invalid} invalid errorMessage={copy.radioGroup.required}>
+          <Radio value="a" label={copy.radioGroup.optionA} />
+          <Radio value="b" label={copy.radioGroup.optionB} />
+        </RadioGroup>
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -138,28 +173,35 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-      }}
-    >
-      <RadioGroup label="Select an option" defaultValue="b">
-        <Radio value="a" label="Option A" />
-        <Radio value="b" label="Option B" />
-        <Radio value="c" label="Option C" />
-      </RadioGroup>
-      <RadioGroup label="Invalid" invalid errorMessage="Error message">
-        <Radio value="a" label="Option A" />
-        <Radio value="b" label="Option B" />
-      </RadioGroup>
-    </div>
-  ),
+  render: () => {
+    const copy = useStoryCopy();
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+        }}
+      >
+        <RadioGroup label={copy.radioGroup.selectOption} defaultValue="b">
+          <Radio value="a" label={copy.radioGroup.optionA} />
+          <Radio value="b" label={copy.radioGroup.optionB} />
+          <Radio value="c" label={copy.radioGroup.optionC} />
+        </RadioGroup>
+        <RadioGroup
+          label={copy.radioGroup.invalid}
+          invalid
+          errorMessage={copy.radioGroup.errorMessage}
+        >
+          <Radio value="a" label={copy.radioGroup.optionA} />
+          <Radio value="b" label={copy.radioGroup.optionB} />
+        </RadioGroup>
+      </div>
+    );
+  },
 };

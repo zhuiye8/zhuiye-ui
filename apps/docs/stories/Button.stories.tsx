@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@zhuiye/ui';
+import { useStoryCopy } from './story-i18n';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -28,30 +29,32 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  render: () => <Button variant="primary">{useStoryCopy().button.primary}</Button>,
+};
 
 export const Secondary: Story = {
-  args: { variant: 'secondary' },
+  render: () => <Button variant="secondary">{useStoryCopy().button.secondary}</Button>,
 };
 
 export const Outline: Story = {
-  args: { variant: 'outline' },
+  render: () => <Button variant="outline">{useStoryCopy().button.outline}</Button>,
 };
 
 export const Ghost: Story = {
-  args: { variant: 'ghost' },
+  render: () => <Button variant="ghost">{useStoryCopy().button.ghost}</Button>,
 };
 
 export const Danger: Story = {
-  args: { variant: 'danger' },
+  render: () => <Button variant="danger">{useStoryCopy().button.danger}</Button>,
 };
 
 export const Small: Story = {
-  args: { size: 'sm' },
+  render: () => <Button size="sm">{useStoryCopy().button.small}</Button>,
 };
 
 export const Large: Story = {
-  args: { size: 'lg' },
+  render: () => <Button size="lg">{useStoryCopy().button.large}</Button>,
 };
 
 export const Loading: Story = {
@@ -68,25 +71,31 @@ export const FullWidth: Story = {
 };
 
 export const AllVariants: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="danger">Danger</Button>
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().button;
+    return (
+      <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        <Button variant="primary">{c.primary}</Button>
+        <Button variant="secondary">{c.secondary}</Button>
+        <Button variant="outline">{c.outline}</Button>
+        <Button variant="ghost">{c.ghost}</Button>
+        <Button variant="danger">{c.danger}</Button>
+      </div>
+    );
+  },
 };
 
 export const AllSizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().button;
+    return (
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <Button size="sm">{c.small}</Button>
+        <Button size="md">{c.medium}</Button>
+        <Button size="lg">{c.large}</Button>
+      </div>
+    );
+  },
 };
 
 export const DarkTheme: Story = {
@@ -94,23 +103,26 @@ export const DarkTheme: Story = {
     backgrounds: { disable: true },
   },
   globals: { theme: 'dark' },
-  render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        display: 'flex',
-        gap: '12px',
-        padding: '24px',
-        backgroundColor: 'var(--zy-background)',
-        color: 'var(--zy-foreground)',
-        borderRadius: '8px',
-      }}
-    >
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="danger">Danger</Button>
-    </div>
-  ),
+  render: () => {
+    const c = useStoryCopy().button;
+    return (
+      <div
+        data-theme="dark"
+        style={{
+          display: 'flex',
+          gap: '12px',
+          padding: '24px',
+          backgroundColor: 'var(--zy-background)',
+          color: 'var(--zy-foreground)',
+          borderRadius: '8px',
+        }}
+      >
+        <Button variant="primary">{c.primary}</Button>
+        <Button variant="secondary">{c.secondary}</Button>
+        <Button variant="outline">{c.outline}</Button>
+        <Button variant="ghost">{c.ghost}</Button>
+        <Button variant="danger">{c.danger}</Button>
+      </div>
+    );
+  },
 };
