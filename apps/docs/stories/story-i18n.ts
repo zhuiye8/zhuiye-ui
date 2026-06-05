@@ -1,5 +1,7 @@
 ﻿import { useLocale } from '@zhuiye/i18n';
 
+export { useLocale };
+
 const storyCopy = {
   en: {
     button: {
@@ -960,6 +962,26 @@ const storyCopy = {
       hiddenText: 'Hidden text',
       addItem: 'Add item',
       iconButtonDesc: 'Icon-only buttons must include visually hidden text for screen readers.',
+    },
+    overview: {
+      title: 'Component Overview',
+      searchPlaceholder: 'Search components...',
+      filterByCategory: 'Filter by category',
+      allCategories: 'All',
+      actions: 'Actions',
+      inputs: 'Inputs',
+      navigation: 'Navigation',
+      overlays: 'Overlays',
+      feedback: 'Feedback',
+      layout: 'Layout',
+      primitives: 'Primitives',
+      stable: 'Stable',
+      beta: 'Beta',
+      copyImport: 'Copy import',
+      copied: 'Copied!',
+      viewStory: 'View story',
+      noResults: 'No components match your search.',
+      componentCount: '{count} components',
     },
   },
   'zh-CN': {
@@ -1930,6 +1952,26 @@ const storyCopy = {
       hiddenText: '隐藏文本',
       addItem: '添加项目',
       iconButtonDesc: '仅图标按钮必须包含供屏幕阅读器使用的视觉隐藏文本。',
+    },
+    overview: {
+      title: '组件概览',
+      searchPlaceholder: '搜索组件...',
+      filterByCategory: '按分类筛选',
+      allCategories: '全部',
+      actions: '操作',
+      inputs: '输入',
+      navigation: '导航',
+      overlays: '层叠',
+      feedback: '反馈',
+      layout: '布局',
+      primitives: '原语',
+      stable: '稳定',
+      beta: '测试',
+      copyImport: '复制导入',
+      copied: '已复制！',
+      viewStory: '查看示例',
+      noResults: '没有匹配的组件。',
+      componentCount: '{count} 个组件',
     },
   },
 } as const;
